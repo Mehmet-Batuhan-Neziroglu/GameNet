@@ -15,37 +15,38 @@
    <children>
       <AnchorPane prefHeight="150.0" prefWidth="1600.0" style="-fx-background-color: #F7FAFC;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="107.0" fitWidth="121.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/user%20logo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="172.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="99.0" fitWidth="115.0" layoutX="154.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/reload%20logo.png" />
                </image>
             </ImageView>
-            <Button layoutX="357.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Add+" textFill="#22a800">
+            <Button fx:id="addButton" layoutX="314.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Add+" textFill="#22a800">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="738.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Remove-" textFill="RED">
+            <Button fx:id="removeButton" layoutX="674.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Remove-" textFill="RED">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <TextField layoutX="1190.0" layoutY="49.0" prefHeight="44.0" prefWidth="400.0" />
-            <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="1120.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="searchBar" layoutX="1104.0" layoutY="49.0" prefHeight="44.0" prefWidth="400.0" />
+            <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="1043.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/search%20logo.png" />
                </image>
             </ImageView>
+            <Button fx:id="searchButton" layoutX="1513.0" layoutY="46.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="73.0" text="Search" />
          </children>
       </AnchorPane>
       <ScrollPane layoutY="150.0" prefHeight="764.0" prefWidth="1600.0">
          <content>
-            <GridPane prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #88AB8E;">
+            <GridPane fx:id="grıdForPhotos" prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #88AB8E;">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
