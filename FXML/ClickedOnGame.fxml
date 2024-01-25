@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #88AB8E;">
@@ -29,7 +28,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ImageView fitHeight="173.0" fitWidth="191.0" layoutX="141.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="173.0" fitWidth="167.0" layoutX="141.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../no%20image%20image.jpg" />
                </image>
@@ -48,6 +47,16 @@
                </font>
             </Label>
             <Button layoutX="493.0" layoutY="14.0" mnemonicParsing="false" text="Add Review" />
+            <Label layoutX="200.0" layoutY="254.0" text="RATED BY">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="170.0" layoutY="289.0" prefHeight="102.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;">
+               <font>
+                  <Font size="64.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
