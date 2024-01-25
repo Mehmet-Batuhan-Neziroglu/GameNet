@@ -1,5 +1,6 @@
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import java.io.IOException;
 public class Operations {
 
     private static Stage popupStage = new Stage();
+    private Scene mainScene;
 
     @FXML
     private Button addButton;
@@ -38,12 +40,12 @@ public class Operations {
     private ImageView userImage;
 
     @FXML
-    void addLıstener(MouseEvent event) throws IOException {
+    void addListener(MouseEvent event) throws IOException {
 
         FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("AddNewGame.fxml"));
         Parent root = rootLoader.load();
 
-        Stage mainStage = new Stage();
+
         popupStage.setTitle("Add Game");
 
         Scene popupScene = new Scene(root);
@@ -52,11 +54,11 @@ public class Operations {
     }
 
     @FXML
-    void profileLıstener(MouseEvent event) throws IOException {
+    void profileListener(MouseEvent event) throws IOException {
         FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("Profile.fxml"));
         Parent root = rootLoader.load();
 
-        Stage mainStage = new Stage();
+
         popupStage.setTitle("Profile");
 
         Scene popupScene = new Scene(root);
@@ -65,18 +67,25 @@ public class Operations {
     }
 
     @FXML
-    void refreashLıstener(MouseEvent event) throws IOException {
+    void refreashListener(MouseEvent event) throws IOException {
 
+        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+        Parent root = rootLoader.load();
+
+        popupStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        mainScene = new Scene(root);
+        popupStage.setScene(mainScene);
+        popupStage.show();
 
     }
 
     @FXML
-    void removeLıstener(MouseEvent event) {
+    void removeListener(MouseEvent event) {
 
     }
 
     @FXML
-    void searchLıstener(ContextMenuEvent event) {
+    void searchListener(ContextMenuEvent event) {
 
     }
 
