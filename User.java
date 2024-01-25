@@ -15,7 +15,7 @@ public class User {
     private String curDefaultFrom;
     private String curDefaultTo;
     private int darkModeOn;
-    private ArrayList<Graph> graphs;
+    private ArrayList<Game> games;
 
     //constructor for first creation
     public User(String userName, String password, String firstName, String lastName, String mothersName, String favouriteColor) {
@@ -26,15 +26,12 @@ public class User {
         this.lastName = lastName;
         this.mothersName = mothersName;
         this.favouriteColor = favouriteColor;
-        this.curDefaultFrom = "USD";
-        this.curDefaultTo = "TRY";
-        darkModeOn = 0;
-        graphs = new ArrayList<Graph>();
+        games = new ArrayList<Game>();
         Database.insertNewUser(this);
     }
 
     //constructor for getting user from database
-    public User(int userId, String userName, String password, String firstName, String lastName, String mothersName, String favouriteColor, String currencyDefaultFrom, String currencyDefaultTo, int darkModeOn, ArrayList<Graph> graphs) {
+    public User(int userId, String userName, String password, String firstName, String lastName, String mothersName, String favouriteColor, ArrayList<Game> games) {
         this.userID = userId;
         this.userName = userName;
         this.password = password;
@@ -42,10 +39,7 @@ public class User {
         this.lastName = lastName;
         this.mothersName = mothersName;
         this.favouriteColor = favouriteColor;
-        this.curDefaultFrom = currencyDefaultFrom;
-        this.curDefaultTo = currencyDefaultTo;
-        this.darkModeOn = darkModeOn;
-        this.graphs = graphs;
+        this.games = games;
     }
 
     public void setUserName(String userName) {
@@ -68,20 +62,6 @@ public class User {
         Database.updateLastName(userID, lastName);
     }
 
-    public void setCurDefaultFrom(String curDefaultFrom) {
-        this.curDefaultFrom = curDefaultFrom;
-        Database.updateDefaultFrom(userID, curDefaultFrom);
-    }
-
-    public void setCurDefaultTo(String curDefaultTo) {
-        this.curDefaultTo = curDefaultTo;
-        Database.updateDefaultTo(userID, curDefaultTo);
-    }
-
-    public void setDarkModeOn(int darkModeOn) {
-        this.darkModeOn = darkModeOn;
-        Database.updateDarkModeOn(userID, darkModeOn);
-    }
 
     public void addGraph(Graph graph) {
         graphs.add(graph);
@@ -149,5 +129,5 @@ public class User {
         }
         Database.deleteGraph(graphName);
     }
-    
+
 }

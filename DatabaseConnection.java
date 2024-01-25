@@ -6,9 +6,9 @@ import java.sql.SQLException;
  * DatabaseConnection
  */
 public class DatabaseConnection {
-    private static String url = "jdbc:sqlserver://localhost;database=XChange;encryption=true;trustServerCertificate=true;";
-    private static String user = "sa";
-    private static String password = "1";
+    private static String url = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11678950";
+    private static String user = "sql11678950";
+    private static String password = "jT3xDXtjDp";
 
     public static Connection connectDatabase() {
         try {

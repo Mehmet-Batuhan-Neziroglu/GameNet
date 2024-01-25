@@ -1,12 +1,11 @@
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.Connection;
-import java.time.LocalDate;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Database {
-    
+
     private static Connection connection = DatabaseConnection.connectDatabase();
 
     public static int getMaxID() {
@@ -27,8 +26,8 @@ public class Database {
     public static void insertNewUser(User user) {
         try {
             Statement st = connection.createStatement();
-            String sql = "INSERT INTO Users (UserID, UserName, UserPassword, FirstName, LastName, MothersName, FavouriteColor, DefaultCurrencyFrom, DefaultCurrencyTo, DarkModeOn)"
-                       + "SELECT " + user.getUserID() + ", '" + user.getUserName() + "', '" + user.getPassword() + "', '" + user.getFirstName() + "', '" + user.getLastName() + "', '" + user.getMothersName() + "', '" + user.getFavouriteColor() + "', '" + user.getCurDefaultFrom() + "', '" + user.getCurDefaultTo() + "'," + user.getDarkModeOn();
+            String sql = "INSERT INTO Users (UserID, UserName, UserPassword, FirstName, LastName, MothersName, FavouriteColor)"
+                       + "SELECT " + user.getUserID() + ", '" + user.getUserName() + "', '" + user.getPassword() + "', '" + user.getFirstName() + "', '" + user.getLastName() + "', '" + user.getMothersName() + "', '" + user.getFavouriteColor();
             st.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,9 +41,7 @@ public class Database {
         String lastName = "";
         String mothersName = "";
         String favouriteColor = "";
-        String defaultFromCode = "";
-        String defaultToCode = "";
-        int darkModeOn = 0;
+
         try {
             Statement st = connection.createStatement();
             String sql = "SELECT * FROM Users WHERE UserName = '" + userName + "'";
@@ -57,141 +54,61 @@ public class Database {
                 lastName = rs.getString(5);
                 mothersName = rs.getString(6);
                 favouriteColor = rs.getString(7);
-                defaultFromCode = rs.getString(8);
-                defaultToCode = rs.getString(9);
-                darkModeOn = rs.getInt(10);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ArrayList<Graph> graphs = getGraphs(userID);
-        return new User(userID, userName, password, firstName, lastName, mothersName, favouriteColor, defaultFromCode, defaultToCode, darkModeOn, graphs);
+        ArrayList<Game> games = getUsersGames(userID);
+        return new User(userID, userName, password, firstName, lastName, mothersName, favouriteColor, games);
     }
 
-    public static String getCurrencyFlag(String currencyCode) {
-        String flagPath = "";
+    public static String getGameImage(String gameName, String userID) {
+        String gameImagePath = "";
         try {
             Statement st = connection.createStatement();
-            String sql = "SELECT CurrencyFlagPath FROM CurrencyFlags WHERE CurrencyCode = '" + currencyCode + "'";
+            String sql = "SELECT GameImagePath FROM UsersGames WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                flagPath = rs.getString(1);
+                gameImagePath = rs.getString(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return flagPath;
+        return gameImagePath;
     }
 
-    public static String getCurrencyName(String currencyCode) {
-        String currencyName = "";
+
+    public static ArrayList<String> getGames() {
+        ArrayList<String> games = new ArrayList<String>();
         try {
             Statement st = connection.createStatement();
-            String sql = "SELECT CurrencyName FROM CurrencyFlags WHERE CurrencyCode = '" + currencyCode + "'";
+            String sql = "SELECT GameName FROM Games";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                currencyName = rs.getString(1);
+                games.add(rs.getString(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return currencyName;
+        return games;
     }
 
-    public static void insertCurrency(String currencyCode, String flagPath, String currencyName) {
-        try {
-            Statement st = connection.createStatement();
-            String sql = "INSERT INTO CurrencyFlags (CurrencyCode, CurrencyFlagPath, CurrencyName) SELECT '" + currencyCode + "', '" + flagPath + "', '" + currencyName + "'";
-            st.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public static ArrayList<String> getCurrencies() {
-        ArrayList<String> currencies = new ArrayList<String>();
+    public static String getGameType(String gameName) {
+        String type = null;
         try {
             Statement st = connection.createStatement();
-            String sql = "SELECT CurrencyCode FROM CurrencyFlags";
+            String sql = "SELECT GamesType FROM Games WHERE GameName = '" + gameName + "'";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                currencies.add(rs.getString(1));
+                type = rs.getString(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return currencies;
-    }
-    
-    public static void insertCurrencyValue(String currencyCode, LocalDate date, double value) {
-        try {
-            Statement st = connection.createStatement();
-            String sql = "INSERT INTO CurrencyValues (CurrencyCode, ValueDate, CurrencyValue) SELECT '" + currencyCode + "', '" + date.toString() + "', " + value;
-            st.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        return type;
     }
 
-    public static double getCurrencyValue(String currencyCode, LocalDate date) {
-        if (currencyCode.equals("USD")) {
-            return 1.0;
-        }
-        double value = 0;
-        try {
-            Statement st = connection.createStatement();
-            String sql = "SELECT CurrencyValue FROM CurrencyValues WHERE CurrencyCode = '" + currencyCode + "' AND ValueDate = '" + date.toString() + "'";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                value = rs.getDouble(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return value;
-    }
-
-    public static ArrayList<Double> getCurrencyValuesBetween(String currencyCode, LocalDate startDate, LocalDate endDate) {
-        if (currencyCode.equals("USD")) {
-            int days = 0;
-            while (startDate.compareTo(endDate) <= 0) {
-                startDate = startDate.plusDays(1);
-                days++;
-            }
-            ArrayList<Double> values = new ArrayList<Double>();
-            for (int i = 0; i < days; i++) {
-                values.add(1.0);
-            }
-            return values;
-        }
-        ArrayList<Double> values = new ArrayList<Double>();
-        try {
-            Statement st = connection.createStatement();
-            String sql = "SELECT CurrencyValue FROM CurrencyValues WHERE ValueDate >= " + "'" + startDate.toString() + "' AND ValueDate <= '" + endDate.toString() + "' AND CurrencyCode = '" + currencyCode + "'";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                values.add(rs.getDouble(1));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return values;
-    }
-
-    public static LocalDate getLatestDate() {
-        LocalDate date = LocalDate.now();
-        try {
-            Statement st = connection.createStatement();
-            String sql = "SELECT MAX(ValueDate) FROM CurrencyValues WHERE CurrencyCode = 'TRY'";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                date = LocalDate.parse(rs.getString(1));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return date;
-    }
 
     public static void updateUserName(int userID, String userName) {
         try {
@@ -210,7 +127,7 @@ public class Database {
             st.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+       }
     }
 
     public static void updatePassword(String userName, String password) {
@@ -243,35 +160,6 @@ public class Database {
         }
     }
 
-    public static void updateDefaultTo(int userID, String defaultToCode) {
-        try {
-            Statement st = connection.createStatement();
-            String sql = "UPDATE Users SET DefaultCurrencyTo = '" + defaultToCode + "' WHERE UserID = " + userID;
-            st.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void updateDefaultFrom(int userID, String defaultFromCode) {
-        try {
-            Statement st = connection.createStatement();
-            String sql = "UPDATE Users SET DefaultCurrencyFrom = '" + defaultFromCode + "' WHERE UserID = " + userID;
-            st.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void updateDarkModeOn(int userID, int darkModeOn) {
-        try {
-            Statement st = connection.createStatement();
-            String sql = "UPDATE Users SET DarkModeOn = " + darkModeOn + " WHERE UserID = " + userID;
-            st.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     //Check if username exists
     public static boolean checkUsername(String userName) {
@@ -344,50 +232,116 @@ public class Database {
         return favouriteColor.equals(userFavouriteColor);
     }
 
-    public static ArrayList<Graph> getGraphs(int userID) {
-        ArrayList<Graph> graphs = new ArrayList<Graph>();
+
+
+    public static ArrayList<Game> getUsersGames(int userID) {
+        ArrayList<Game> games = new ArrayList<Game>();
         try {
             Statement st = connection.createStatement();
-            String sql = "SELECT * FROM Graphs WHERE UserID = " + userID;
+            String sql = "SELECT * FROM UsersGames WHERE UserID = " + userID;
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                userID = rs.getInt(1);
-                String graphName = rs.getString(2);
-                String graphDescription = rs.getString(3);
-                int graphImportance = rs.getInt(4);
-                LocalDate dateCreated = LocalDate.parse(rs.getDate(5).toString());
-                String curFromCode = rs.getString(6);
-                String curToCode = rs.getString(7);
-                LocalDate startDate = LocalDate.parse(rs.getDate(8).toString());
-                LocalDate endDate = LocalDate.parse(rs.getDate(9).toString());
-                Graph graph = new Graph(graphName, graphDescription, graphImportance, dateCreated, curFromCode, curToCode, startDate, endDate);
-                graphs.add(graph);
+                String gameName = rs.getString(2);
+                int gameImagePath = rs.getInt(3);
+                Game game = new Game(gameName, gameImagePath);
+                games.add(game);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return graphs;
+        return games;
     }
 
-    public static void saveGraph(Graph graph, int userID) {
+    public static void saveGame(Game game, int userID) {
         try {
             Statement st = connection.createStatement();
-            String sql = "INSERT INTO Graphs (UserID, GraphName, GraphDescription, GraphImportance, DateCreated, CurrencyFrom, CurrencyTo, StartDate, EndDate)"
-                       + "SELECT " + userID + ", '" + graph.getGraphName() + "', '" + graph.getGraphDescription() + "', " + graph.getGraphImportance() + ", '" + graph.getDateCreated().toString() + "', '" + graph.getCurFromCode() + "', '" + graph.getCurToCode() + "', '" + graph.getStartDate().toString() + "', '" + graph.getEndDate().toString() + "'";
+            String sql = "INSERT INTO UsersGames (UserID, GameName, gameImagePath)"
+                       + "SELECT " + userID + ", '" + game.getGameName() + "', '" + game.getgameImagePath() + "'";
             st.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void deleteGraph(String graphName) {
+    public static void deleteGame(String gameName, int userID) {
         try {
             Statement st = connection.createStatement();
-            String sql = "DELETE FROM Graphs WHERE GraphName = '" + graphName + "'";
+            String sql = "DELETE FROM usersGames WHERE GameName = '" + gameName + "' AND UserID = '" + userID + "'";
             st.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public static void addReview(int userID, String gameName, String review){
+        try {
+            Statement st = connection.createStatement();
+            String sql = "INSERT INTO Reviews (UserID, GameName, Review)"
+                    + "SELECT " + userID + ", '" + gameName + "', '" + review + "'";
+            st.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void addOrUpdateGameRate(int userID, String gameName, int gameRate) throws SQLException {
+        int rate = 0;
+        int counter = 0;
+        int total = 0;
+        int average = 0;
+
+        try {
+            Statement st = connection.createStatement();
+            String sql = "SELECT Rate FROM Rates WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
+            ResultSet rs = st.executeQuery(sql);
+
+            sql ="UPDATE Rates SET Rate = '" + gameRate + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
+            st.execute(sql);
+
+
+        } catch (SQLException e) {
+            Statement st = connection.createStatement();
+            String sql = "INSERT INTO Rates (UserID, GameName, Rates)"
+                    + "SELECT " + userID + ", '" + gameName + "', '" + gameRate + "'";
+            st.execute(sql);
+
+            sql = "SELECT RatedBy FROM Games WHERE GameName = '" + gameName + "'";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                rate = rs.getInt(4);
+            }
+
+            rate++;
+            sql ="UPDATE Rates SET Rate = '" + rate + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
+            st.execute(sql);
+
+        }
+
+        Statement st = connection.createStatement();
+        String sql = "SELECT GamesAverageRate FROM Games WHERE GameName = '" + gameName + "'";
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            total = total + rs.getInt(3);
+            counter++;
+        }
+
+        average = total/counter;
+
+        sql = "UPDATE Games SET GamesAverageRate = '" + average + "' WHERE GameName = '" + gameName + "'";
+        st.execute(sql);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 }
