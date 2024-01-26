@@ -242,7 +242,7 @@ public class Database {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 String gameName = rs.getString(2);
-                int gameImagePath = rs.getInt(3);
+                String gameImagePath = rs.getString(3);
                 Game game = new Game(gameName, gameImagePath);
                 games.add(game);
             }
@@ -256,7 +256,7 @@ public class Database {
         try {
             Statement st = connection.createStatement();
             String sql = "INSERT INTO UsersGames (UserID, GameName, gameImagePath)"
-                       + "SELECT " + userID + ", '" + game.getGameName() + "', '" + game.getgameImagePath() + "'";
+                       + "SELECT " + userID + ", '" + game.getGameName() + "', '" + game.getGameImagePath() + "'";
             st.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
