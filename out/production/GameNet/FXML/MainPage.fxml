@@ -20,28 +20,28 @@
                   <Image url="@../Logos/user%20logo.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="refreashImage" fitHeight="93.0" fitWidth="106.0" layoutX="166.0" layoutY="24.0" onMouseClicked="#refreashLıstener" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="refreashImage" fitHeight="94.0" fitWidth="113.0" layoutX="111.0" layoutY="25.0" onMouseClicked="#refreashLıstener" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/reload%20logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="addButton" layoutX="301.0" mnemonicParsing="false" onMouseClicked="#addLıstener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Add+" textFill="#22a800">
+            <Button fx:id="addButton" layoutX="238.0" mnemonicParsing="false" onMouseClicked="#addLıstener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Add+" textFill="#22a800">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="removeButton" layoutX="668.0" mnemonicParsing="false" onMouseClicked="#removeLıstener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Remove-" textFill="RED">
+            <Button fx:id="removeButton" layoutX="598.0" mnemonicParsing="false" onMouseClicked="#removeLıstener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Remove-" textFill="RED">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <TextField fx:id="searchBar" layoutX="1084.0" layoutY="49.0" prefHeight="44.0" prefWidth="400.0" />
-            <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="1024.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="searchBar" layoutX="1084.0" layoutY="54.0" prefHeight="44.0" prefWidth="400.0" />
+            <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="1024.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/search%20logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="searchButton" layoutX="1498.0" layoutY="50.0" mnemonicParsing="false" onContextMenuRequested="#searchLıstener" prefHeight="42.0" prefWidth="70.0" text="Search" />
+            <Button fx:id="searchButton" layoutX="1498.0" layoutY="55.0" mnemonicParsing="false" onContextMenuRequested="#searchLıstener" prefHeight="42.0" prefWidth="70.0" text="Search" />
          </children>
       </AnchorPane>
       <ScrollPane layoutY="150.0" prefHeight="764.0" prefWidth="1600.0">

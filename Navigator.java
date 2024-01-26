@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Navigator extends Application{
 
     private static User user;
-    private static ArrayList<String> currencies = Database.getCurrencies();
+    private static ArrayList<String> games = Database.getGames();
     private static boolean isSignIn;
 
     @Override
@@ -47,8 +47,8 @@ public class Navigator extends Application{
         Navigator.user = user;
     }
 
-    public static ArrayList<String> getCurrencies() {
-        return currencies;
+    public static ArrayList<String> getGames() {
+        return games;
     }
     
 public static boolean getIsSignIn() {
