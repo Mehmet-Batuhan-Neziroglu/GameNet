@@ -12,9 +12,6 @@ public class User {
     private String lastName;
     private String mothersName;
     private String favouriteColor;
-    private String curDefaultFrom;
-    private String curDefaultTo;
-    private int darkModeOn;
     private ArrayList<Game> games;
 
     //constructor for first creation
@@ -63,16 +60,8 @@ public class User {
     }
 
 
-    public void addGraph(Graph graph) {
-        graphs.add(graph);
-    }
-
-    public String getCurDefaultFrom() {
-        return curDefaultFrom;
-    }
-
-    public String getCurDefaultTo() {
-        return curDefaultTo;
+    public void addGraph(Game game) {
+        games.add(game);
     }
 
     public String getFavouriteColor() {
@@ -83,8 +72,8 @@ public class User {
         return firstName;
     }
 
-    public ArrayList<Graph> getGraphs() {
-        return graphs;
+    public ArrayList<Game> getGraphs() {
+        return games;
     }
 
     public String getLastName() {
@@ -107,27 +96,24 @@ public class User {
         return userName;
     }
 
-    public int getDarkModeOn() {
-        return darkModeOn;
-    }
 
     //returns true if another graph with same name exist
-    public boolean checkGraphName(String graphName) {
-        for (Graph graph : graphs) {
-            if (graph.getGraphName().equals(graphName)) {
+    public boolean checkGameName(String gameName) {
+        for (Game game : games) {
+            if (game.getGameName().equals(gameName)) {
                 return true;
             }
         }
         return false;
     }
 
-    public void deleteGraph(String graphName) {
-        for (int i = 0; i < graphs.size(); i++) {
-            if (graphs.get(i).getGraphName().equals(graphName)) {
-                graphs.remove(i);
+    public void deleteGame(String gameName, int userID) {
+        for (int i = 0; i < games.size(); i++) {
+            if (games.get(i).getGameName().equals(gameName)) {
+                games.remove(i);
             }
         }
-        Database.deleteGraph(graphName);
+        Database.deleteGame(gameName, userID);
     }
 
 }
