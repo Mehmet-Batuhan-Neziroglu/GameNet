@@ -15,7 +15,7 @@
    <children>
       <AnchorPane prefHeight="150.0" prefWidth="1600.0" style="-fx-background-color: #F7FAFC;">
          <children>
-            <ImageView fx:id="userImage" fitHeight="106.0" fitWidth="115.0" layoutX="5.0" layoutY="18.0" onMouseClicked="#profileLıstener" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="userImage" fitHeight="106.0" fitWidth="115.0" layoutX="5.0" layoutY="18.0" onMouseClicked="#profileListener" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/user%20logo.png" />
                </image>
