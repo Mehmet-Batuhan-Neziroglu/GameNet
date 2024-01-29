@@ -18,7 +18,7 @@ public class Navigator extends Application{
     @Override
     public void start(Stage stage){
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("FXML/LoginPage.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

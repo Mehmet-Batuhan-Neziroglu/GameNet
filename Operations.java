@@ -42,7 +42,7 @@ public class Operations {
     @FXML
     void addListener(MouseEvent event) throws IOException {
 
-        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("AddNewGame.fxml"));
+        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("FXML/AddNewGame.fxml"));
         Parent root = rootLoader.load();
 
 
@@ -55,7 +55,7 @@ public class Operations {
 
     @FXML
     void profileListener(MouseEvent event) throws IOException {
-        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("Profile.fxml"));
+        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("FXML/Profile.fxml"));
         Parent root = rootLoader.load();
 
 
@@ -69,7 +69,7 @@ public class Operations {
     @FXML
     void refreashListener(MouseEvent event) throws IOException {
 
-        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("FXML/MainPage.fxml"));
         Parent root = rootLoader.load();
 
         popupStage = (Stage)((Node)event.getSource()).getScene().getWindow();

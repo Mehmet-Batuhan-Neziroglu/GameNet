@@ -74,7 +74,7 @@ public class RegisterController {
 
     @FXML
     void forgotPasswordBackButtonListener(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXML/LoginPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -87,7 +87,7 @@ public class RegisterController {
             invalidMessage.setText("Please enter all of the required information!");
         }
         else if(Authentication.userSignUp(usernameTextField.getText(), passwordField.getText(), repeatPasswordField.getText(), nameTextField.getText(), surnameTextField.getText(), motherNameTextField.getText(), favouriteColorTextField.getText()) == 1){
-            Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("FXML/LoginPage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

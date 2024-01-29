@@ -46,7 +46,7 @@ public class LoginController {
 
     @FXML
     void forgotPasswordButtonListener(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ForgotPasswordPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXML/ForgotPasswordPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -63,7 +63,7 @@ public class LoginController {
         }
         else if(Authentication.userSignIn(usernameTextField.getText(), passwordField.getText()) == 1){
             invalidMessage.setText("");
-            Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("FXML/MainPage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -81,7 +81,7 @@ public class LoginController {
 
     @FXML
     void signUpNowButtonListener(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXML/RegisterPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
