@@ -20,17 +20,17 @@
                   <Image url="@../Logos/user%20logo.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="refreashImage" fitHeight="94.0" fitWidth="113.0" layoutX="111.0" layoutY="25.0" onMouseClicked="#refreashLıstener" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="refreashImage" fitHeight="94.0" fitWidth="113.0" layoutX="111.0" layoutY="25.0" onMouseClicked="#refreashListener" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/reload%20logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="addButton" layoutX="238.0" mnemonicParsing="false" onMouseClicked="#addLıstener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Add+" textFill="#22a800">
+            <Button fx:id="addButton" layoutX="238.0" mnemonicParsing="false" onMouseClicked="#addListener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Add+" textFill="#22a800">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="removeButton" layoutX="598.0" mnemonicParsing="false" onMouseClicked="#removeLıstener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Remove-" textFill="RED">
+            <Button fx:id="removeButton" layoutX="598.0" mnemonicParsing="false" onMouseClicked="#removeListener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Remove-" textFill="RED">
                <font>
                   <Font size="24.0" />
                </font>
@@ -41,7 +41,7 @@
                   <Image url="@../Logos/search%20logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="searchButton" layoutX="1498.0" layoutY="55.0" mnemonicParsing="false" onContextMenuRequested="#searchLıstener" prefHeight="42.0" prefWidth="70.0" text="Search" />
+            <Button fx:id="searchButton" layoutX="1498.0" layoutY="55.0" mnemonicParsing="false" onContextMenuRequested="#searchListener" prefHeight="42.0" prefWidth="70.0" text="Search" />
          </children>
       </AnchorPane>
       <ScrollPane layoutY="150.0" prefHeight="764.0" prefWidth="1600.0">
