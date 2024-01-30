@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b177f272-e1f1-4a73-ac91-f2c5b85f053f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FXML/Profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/FXML/Profile.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

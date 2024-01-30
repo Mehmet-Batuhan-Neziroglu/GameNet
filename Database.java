@@ -62,7 +62,7 @@ public class Database {
         return new User(userID, userName, password, firstName, lastName, mothersName, favouriteColor, games);
     }
 
-    public static String getGameImage(String gameName, String userID) {
+    public static String getGameImage(String gameName, int userID) {
         String gameImagePath = "";
         try {
             Statement st = connection.createStatement();
@@ -76,6 +76,8 @@ public class Database {
         }
         return gameImagePath;
     }
+
+    //saveImage method is required
 
 
     public static ArrayList<String> getGames() {
