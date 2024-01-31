@@ -288,34 +288,37 @@ public class Database {
 
 
     public static void addOrUpdateGameRate(int userID, String gameName, int gameRate) throws SQLException {
-        int rate = 0;
+        int ratedBy = 0;
         int counter = 0;
         int total = 0;
         int average = 0;
-
+        System.out.println("0");
         try {
             Statement st = connection.createStatement();
             String sql = "SELECT Rate FROM Rates WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
+            System.out.println("1");
             ResultSet rs = st.executeQuery(sql);
-
+            System.out.println("2");
             sql ="UPDATE Rates SET Rate = '" + gameRate + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
             st.execute(sql);
-
+            System.out.println("3");
 
         } catch (SQLException e) {
+            System.out.println("4");
             Statement st = connection.createStatement();
             String sql = "INSERT INTO Rates (UserID, GameName, Rates)"
                     + "SELECT " + userID + ", '" + gameName + "', '" + gameRate + "'";
+            System.out.println("5");
             st.execute(sql);
-
+            System.out.println("6");
             sql = "SELECT RatedBy FROM Games WHERE GameName = '" + gameName + "'";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                rate = rs.getInt(4);
+                ratedBy = rs.getInt(4);
             }
 
-            rate++;
-            sql ="UPDATE Rates SET Rate = '" + rate + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
+            ratedBy++;
+            sql ="UPDATE Rates SET Rate = '" + ratedBy + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
             st.execute(sql);
 
         }

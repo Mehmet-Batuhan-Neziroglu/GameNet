@@ -9,6 +9,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.scene.Group;
 
@@ -16,6 +19,9 @@ import javafx.scene.Group;
 public class AddNewGameController {
 
     ObservableList<String> gameList = FXCollections.observableArrayList();
+
+    @FXML
+    private Label addNewGameErrorLabel;
 
     @FXML
     private Button addImageButton;
@@ -67,8 +73,22 @@ public class AddNewGameController {
 
     @FXML
     void saveButtonAction(MouseEvent event) {
-        Game game = new Game(gameNameComboBox.getValue(), Database.getGameImage(gameNameComboBox.getValue(), Navigator.getUser().getUserID()));
-        Database.saveGame(game, Navigator.getUser().getUserID());
+        ArrayList<Game> usersGames = Database.getUsersGames(Navigator.getUser().getUserID());
+        boolean isExists = false;
+
+        for (Game game: usersGames){
+            if(game.getGameName().equals(gameNameComboBox.getValue())){
+                isExists = true;
+            }
+        }
+        if(isExists == false) {
+            Game game = new Game(gameNameComboBox.getValue(), Database.getGameImage(gameNameComboBox.getValue(), Navigator.getUser().getUserID()));
+            Database.saveGame(game, Navigator.getUser().getUserID());
+        }
+        else{
+            addNewGameErrorLabel.setTextFill(Color.color(1, 0, 0));
+            addNewGameErrorLabel.setText("The game you are trying to add already exists in your games table");
+        }
     }
 
 }

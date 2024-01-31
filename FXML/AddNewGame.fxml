@@ -30,7 +30,8 @@
             </Label>
             <ComboBox fx:id="gameNameComboBox" layoutX="27.0" layoutY="71.0" onAction="#gameNameComboBoxAction" prefWidth="150.0" style="-fx-background-color: F7FAFC;" />
             <Label fx:id="gameTypeLabel" layoutX="27.0" layoutY="166.0" prefHeight="26.0" prefWidth="150.0" />
-            <Button fx:id="saveButton" layoutX="296.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#saveButtonAction" text="Save" />
+            <Button fx:id="saveButton" layoutX="296.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#saveButtonAction" text="Save" />
+            <Label fx:id="addNewGameErrorLabel" layoutX="14.0" layoutY="313.0" prefHeight="18.0" prefWidth="606.0" textAlignment="CENTER" />
          </children>
       </AnchorPane>
    </children>

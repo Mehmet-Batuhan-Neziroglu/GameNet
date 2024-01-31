@@ -80,7 +80,7 @@ public class ProfileController {
             Navigator.getUser().setUserName(usernameTextField.getText());
 
             applyChangesLabel.setTextFill(Color.color(0, 1, 0));
-            applyChangesLabel.setText("Succesfully Changed");
+            applyChangesLabel.setText("Successfully Changed");
         }
     }
 
