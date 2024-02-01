@@ -22,10 +22,10 @@ public class Operations {
     private Button addButton;
 
     @FXML
-    private GridPane gridForPhotoes;
+    private GridPane gridForPhotos;
 
     @FXML
-    private ImageView refreashImage;
+    private ImageView refreshImage;
 
     @FXML
     private Button removeButton;
@@ -67,15 +67,23 @@ public class Operations {
     }
 
     @FXML
-    void refreashListener(MouseEvent event) throws IOException {
+    void refreshListener(MouseEvent event) throws IOException {
 
-        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("FXML/MainPage.fxml"));
+        /*FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("FXML/MainPage.fxml"));
         Parent root = rootLoader.load();
 
         popupStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
         popupStage.setScene(mainScene);
-        popupStage.show();
+        popupStage.show();*/
+
+        for(int i = 0; i < Database.getUsersGames(Navigator.getUser().getUserID()).size(); i ++){
+            ImageView imageView = new ImageView(Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameImagePath());
+            imageView.setFitWidth(100); // Set width
+            imageView.setFitHeight(100); // Set height
+            imageView.setPreserveRatio(true);
+            gridForPhotos.add(imageView, i, 0);
+        }
 
     }
 
@@ -86,7 +94,8 @@ public class Operations {
 
     @FXML
     void searchListener(ContextMenuEvent event) {
-
+        //random bir şekilde arama algoritmalarından bir tanesini kullan, elindeki listeyi burada bir ArrayList'e kaydet,
+        //sonra da o arraylist'de ismi olan bütün oyunları userGames listesinden al ve onları ekranda görüntüle
     }
 
 }

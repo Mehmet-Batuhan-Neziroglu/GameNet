@@ -69,7 +69,7 @@ public class Database {
             String sql = "SELECT GameImagePath FROM UsersGames WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                gameImagePath = rs.getString(1);
+                gameImagePath = rs.getString(1);  //bu index 1 idi
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,7 +78,15 @@ public class Database {
     }
 
     //saveImage method is required
-
+    public static void addImage(int userId, String gameName, String gameImagePath) {
+        try {
+            Statement st = connection.createStatement();
+            String sql = "UPDATE UsersGames SET GameImagePath = '" + gameImagePath + "' WHERE UserID = '" + userId + "' AND GameName = '" + gameName + "'";
+            st.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static ArrayList<String> getGames() {
         ArrayList<String> games = new ArrayList<String>();
@@ -268,7 +276,7 @@ public class Database {
     public static void deleteGame(String gameName, int userID) {
         try {
             Statement st = connection.createStatement();
-            String sql = "DELETE FROM usersGames WHERE GameName = '" + gameName + "' AND UserID = '" + userID + "'";
+            String sql = "DELETE FROM UsersGames WHERE GameName = '" + gameName + "' AND UserID = '" + userID + "'";
             st.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -320,7 +328,7 @@ public class Database {
             ratedBy++;
             sql ="UPDATE Rates SET Rate = '" + ratedBy + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
             st.execute(sql);
-
+            //burada ne yapıyoruz ya (316'dan itibaren) , ratedBy değerini bir user'ın rates'ine kaydediyoruz????????
         }
 
         Statement st = connection.createStatement();

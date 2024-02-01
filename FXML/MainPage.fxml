@@ -20,7 +20,7 @@
                   <Image url="@../Logos/user%20logo.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="refreashImage" fitHeight="94.0" fitWidth="113.0" layoutX="111.0" layoutY="25.0" onMouseClicked="#refreashListener" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="refreshImage" fitHeight="94.0" fitWidth="113.0" layoutX="111.0" layoutY="25.0" onMouseClicked="#refreshListener" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/reload%20logo.png" />
                </image>
@@ -46,7 +46,7 @@
       </AnchorPane>
       <ScrollPane layoutY="150.0" prefHeight="764.0" prefWidth="1600.0">
          <content>
-            <GridPane fx:id="gridForPhotoes" prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #88AB8E;">
+            <GridPane fx:id="gridForPhotos" prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #88AB8E;">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

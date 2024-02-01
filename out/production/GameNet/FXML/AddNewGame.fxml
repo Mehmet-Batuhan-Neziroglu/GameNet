@@ -22,7 +22,7 @@
                </image>
             </ImageView>
             <Button fx:id="addImageButton" layoutX="457.0" layoutY="269.0" mnemonicParsing="false" onAction="#addImageButtonAction" style="-fx-background-color: F7FAFC;" text="Add Image" />
-            <Slider fx:id="rateGameSlider" layoutX="25.0" layoutY="267.0" max="5.0" onDragDetected="#rateGameSliderAction" prefHeight="38.0" prefWidth="234.0" showTickLabels="true" showTickMarks="true" />
+            <Slider fx:id="rateGameSlider" layoutX="25.0" layoutY="267.0" max="5.0" onMouseReleased="#rateGameSliderAction" prefHeight="38.0" prefWidth="234.0" showTickLabels="true" showTickMarks="true" />
             <Label layoutX="28.0" layoutY="14.0" text="NEW GAME">
                <font>
                   <Font size="18.0" />
