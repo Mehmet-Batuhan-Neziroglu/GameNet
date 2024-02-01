@@ -110,8 +110,6 @@ public class AddNewGameController {
             addNewGameErrorLabel.setText("The game you are trying to add already exists in your games table");
         }
 
-        System.out.println("Burada calısıyor mu");
-
 
     }
 

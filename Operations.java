@@ -40,30 +40,17 @@ public class Operations {
     private ImageView userImage;
 
     @FXML
+    void initialize() {
+        addImageViewsToMainPage();
+    }
+    @FXML
     void addListener(MouseEvent event) throws IOException {
-
-        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("FXML/AddNewGame.fxml"));
-        Parent root = rootLoader.load();
-
-
-        popupStage.setTitle("Add Game");
-
-        Scene popupScene = new Scene(root);
-        popupStage.setScene(popupScene);
-        popupStage.show();
+        popUp("FXML/AddNewGame.fxml", "Add Game");
     }
 
     @FXML
     void profileListener(MouseEvent event) throws IOException {
-        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("FXML/Profile.fxml"));
-        Parent root = rootLoader.load();
-
-
-        popupStage.setTitle("Profile");
-
-        Scene popupScene = new Scene(root);
-        popupStage.setScene(popupScene);
-        popupStage.show();
+        popUp("FXML/Profile.fxml", "Profile");
     }
 
     @FXML
@@ -77,13 +64,7 @@ public class Operations {
         popupStage.setScene(mainScene);
         popupStage.show();*/
 
-        for(int i = 0; i < Database.getUsersGames(Navigator.getUser().getUserID()).size(); i ++){
-            ImageView imageView = new ImageView(Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameImagePath());
-            imageView.setFitWidth(100); // Set width
-            imageView.setFitHeight(100); // Set height
-            imageView.setPreserveRatio(true);
-            gridForPhotos.add(imageView, i, 0);
-        }
+        addImageViewsToMainPage();
 
     }
 
@@ -96,6 +77,36 @@ public class Operations {
     void searchListener(ContextMenuEvent event) {
         //random bir şekilde arama algoritmalarından bir tanesini kullan, elindeki listeyi burada bir ArrayList'e kaydet,
         //sonra da o arraylist'de ismi olan bütün oyunları userGames listesinden al ve onları ekranda görüntüle
+    }
+
+    private void addImageViewsToMainPage(){
+        for(int i = 0; i < Database.getUsersGames(Navigator.getUser().getUserID()).size(); i ++) {
+            ImageView imageView = new ImageView(Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameImagePath());
+            imageView.setFitWidth(100); // Set width
+            imageView.setFitHeight(100); // Set height
+            imageView.setPreserveRatio(true);
+            gridForPhotos.add(imageView, i, 0);
+
+            imageView.setOnMouseClicked(event -> {
+                try {
+                    popUp("FXML/ClickedOnGame.fxml", "Game Details");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+    }
+
+    public void popUp(String popUpResource, String popUpTitle) throws IOException {
+        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource(popUpResource));
+        Parent root = rootLoader.load();
+
+
+        popupStage.setTitle(popUpTitle);
+
+        Scene popupScene = new Scene(root);
+        popupStage.setScene(popupScene);
+        popupStage.show();
     }
 
 }
