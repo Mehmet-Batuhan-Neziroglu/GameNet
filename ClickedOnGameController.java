@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ClickedOnGameController {
 
@@ -61,8 +62,9 @@ public class ClickedOnGameController {
     }
 
     @FXML
-    void saveButtonAction(MouseEvent event) {
-
+    void saveButtonAction(MouseEvent event) throws SQLException {
+        //oyun ismini nasıl alabileceğimizi bulmalıyız
+        Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), nameLabel.getText(), rateChoiceBox.getValue());
     }
 
 }
