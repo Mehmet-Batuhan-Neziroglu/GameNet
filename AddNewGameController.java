@@ -83,8 +83,15 @@ public class AddNewGameController {
 
     @FXML
     void rateGameSliderAction(MouseEvent event) throws SQLException {
-        //Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), gameNameComboBox.getValue(), (int)rateGameSlider.getValue());
-        System.out.println("aaaaaaa");
+        System.out.println("Slider value changed: " + (int)rateGameSlider.getValue());
+        // You can save the value to a variable or data structure here
+        int sliderValue = (int)rateGameSlider.getValue();
+        // Perform any other actions with the value, such as saving it to a database
+        try {
+            Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), gameNameComboBox.getValue(), sliderValue);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

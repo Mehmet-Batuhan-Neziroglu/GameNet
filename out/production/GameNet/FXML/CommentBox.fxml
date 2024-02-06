@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CommentBoxController">
+   <children>
+      <AnchorPane prefHeight="147.0" prefWidth="270.0">
+         <children>
+            <Label fx:id="nameLabel" layoutX="1.0" prefHeight="36.0" prefWidth="191.0" text="Name of the comment's owner" />
+            <Label fx:id="rateLabel" layoutX="192.0" prefHeight="36.0" prefWidth="78.0" text="Rate" />
+            <Label fx:id="commentLabel" layoutY="30.0" prefHeight="117.0" prefWidth="270.0" text="The comment of the user" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -18,28 +17,24 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="122.0" text="Type" />
-            <Label layoutX="15.0" layoutY="179.0" text="Rate" />
-            <Label layoutX="11.0" layoutY="63.0" text="Name" />
-            <Label fx:id="nameLabel" layoutX="12.0" layoutY="87.0" prefHeight="27.0" prefWidth="114.0" style="-fx-background-color: F7FAFC;" />
-            <Label fx:id="typeLabel" layoutX="12.0" layoutY="146.0" prefHeight="27.0" prefWidth="114.0" style="-fx-background-color: F7FAFC;" />
+            <Label layoutX="13.0" layoutY="115.0" text="Type" />
+            <Label layoutX="15.0" layoutY="185.0" text="Rate" />
+            <Label layoutX="11.0" layoutY="50.0" text="Name" />
+            <Label fx:id="nameLabel" layoutX="12.0" layoutY="74.0" prefHeight="27.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;" />
+            <Label fx:id="typeLabel" layoutX="12.0" layoutY="139.0" prefHeight="27.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;" />
             <Label layoutX="16.0" layoutY="254.0" text="AVERAGE RATE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ImageView fitHeight="173.0" fitWidth="167.0" layoutX="136.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../no%20image%20image.jpg" />
-               </image>
-            </ImageView>
-            <Label fx:id="averageRateLabel" layoutX="16.0" layoutY="289.0" prefHeight="102.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;">
+            <ImageView fx:id="gameImageView" fitHeight="165.0" fitWidth="155.0" layoutX="159.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="averageRateLabel" layoutX="16.0" layoutY="289.0" prefHeight="102.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;" textAlignment="CENTER">
                <font>
                   <Font size="64.0" />
                </font>
             </Label>
-            <Button fx:id="saveButton" layoutX="79.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#saveButtonAction" text="Save" />
-            <ChoiceBox fx:id="rateChoiceBox" layoutX="12.0" layoutY="200.0" prefHeight="26.0" prefWidth="62.0" />
+            <Button fx:id="saveButton" layoutX="79.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#saveButtonAction" text="Save" />
+            <ChoiceBox fx:id="rateChoiceBox" layoutX="12.0" layoutY="206.0" prefHeight="26.0" prefWidth="62.0" />
             <VBox layoutX="318.0" layoutY="40.0" prefHeight="350.0" prefWidth="270.0" style="-fx-background-color: F7FAFC;" />
             <Label layoutX="318.0" layoutY="7.0" prefHeight="40.0" prefWidth="198.0" text="RATINGS &amp; REVİEWS">
                <font>
@@ -47,16 +42,18 @@
                </font>
             </Label>
             <Button fx:id="addReviewButton" layoutX="493.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#addReviewButtonAction" text="Add Review" />
-            <Label fx:id="ratedByLabel" layoutX="165.0" layoutY="254.0" text="RATED BY">
+            <Label layoutX="165.0" layoutY="254.0" text="RATED BY">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="165.0" layoutY="289.0" prefHeight="102.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;">
+            <Label fx:id="ratedByLabel" layoutX="165.0" layoutY="289.0" prefHeight="102.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;" textAlignment="CENTER">
                <font>
                   <Font size="64.0" />
                </font>
             </Label>
+            <Button fx:id="editButton" layoutX="218.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#editButtonAction" text="Edit" />
+            <Label fx:id="successfullySavedLabel" layoutX="13.0" layoutY="232.0" prefHeight="26.0" prefWidth="143.0" />
          </children>
       </AnchorPane>
    </children>

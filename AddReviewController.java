@@ -14,7 +14,7 @@ public class AddReviewController {
 
     @FXML
     void saveButtonAction(MouseEvent event) {
-        Database.addReview(Navigator.getUser().getUserID(), , reviewTextField.getText());
+        //Database.addReview(Navigator.getUser().getUserID(), , reviewTextField.getText());
     }
 
 }

@@ -103,7 +103,6 @@ public class Database {
         return games;
     }
 
-
     public static String getGameType(String gameName) {
         String type = null;
         try {
@@ -294,54 +293,106 @@ public class Database {
         }
     }
 
+    public  static int getGameRate(int userId, String gameName){
+        int rate = 0;
+        try {
+            Statement st = connection.createStatement();
+            String sql = "SELECT Rate FROM Rates WHERE GameName = '" + gameName + "' AND UserID = '" + userId + "'";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                rate = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rate;
+    }
+
+    public static int getRatedBy(String gameName){
+        int ratedBy = 0;
+        try {
+            Statement st = connection.createStatement();
+            String sql = "SELECT RatedBy FROM Games WHERE GameName = '" + gameName + "'";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                ratedBy = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ratedBy;
+    }
+
+    public static double getGamesAverageRate(String gameName) {
+        double averageRate = 0;
+        try {
+            Statement st = connection.createStatement();
+            String sql = "SELECT GamesAverageRate FROM Games WHERE GameName = '" + gameName + "'";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                averageRate = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return averageRate;
+    }
+
 
     public static void addOrUpdateGameRate(int userID, String gameName, int gameRate) throws SQLException {
         int ratedBy = 0;
         int counter = 0;
-        int total = 0;
-        int average = 0;
-        System.out.println("0");
+        double total = 0;
+        double average = 0;
         try {
             Statement st = connection.createStatement();
+            //burası nedense hata vermiyor ve yeni rate kaydetmek istediğimde de buraya giriyor
             String sql = "SELECT Rate FROM Rates WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
-            System.out.println("1");
             ResultSet rs = st.executeQuery(sql);
-            System.out.println("2");
-            sql ="UPDATE Rates SET Rate = '" + gameRate + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
-            st.execute(sql);
-            System.out.println("3");
+            if(rs.next() != false) {
+                sql = "UPDATE Rates SET Rate = '" + gameRate + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
+                st.execute(sql);
+                System.out.println("nooo");
+            }
+            else{
+                System.out.println("no times two");
+                SQLException sqlException = new SQLException();
+                throw sqlException;
+            }
 
         } catch (SQLException e) {
-            System.out.println("4");
+            System.out.println("aaaaaa");
             Statement st = connection.createStatement();
-            String sql = "INSERT INTO Rates (UserID, GameName, Rates)"
+            String sql = "INSERT INTO Rates (UserID, GameName, Rate)"
                     + "SELECT " + userID + ", '" + gameName + "', '" + gameRate + "'";
-            System.out.println("5");
             st.execute(sql);
-            System.out.println("6");
             sql = "SELECT RatedBy FROM Games WHERE GameName = '" + gameName + "'";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                ratedBy = rs.getInt(4);
+                ratedBy = rs.getInt(1);
             }
-
+            System.out.println("bbbbbb");
             ratedBy++;
-            sql ="UPDATE Rates SET Rate = '" + ratedBy + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
+            sql ="UPDATE Games SET RatedBy = '" + ratedBy + "' WHERE GameName = '" + gameName + "'";
             st.execute(sql);
             //burada ne yapıyoruz ya (316'dan itibaren) , ratedBy değerini bir user'ın rates'ine kaydediyoruz????????
         }
 
         Statement st = connection.createStatement();
-        String sql = "SELECT GamesAverageRate FROM Games WHERE GameName = '" + gameName + "'";
+        String sql = "SELECT Rate FROM Rates";
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-            total = total + rs.getInt(3);
+            System.out.println("denemeeee");
+            double columnValue = rs.getDouble("Rate");
+            total += columnValue;
             counter++;
+            System.out.println("denemexx22");
         }
 
         average = total/counter;
+        String formattedValue = String.format("%.2f", average);
 
-        sql = "UPDATE Games SET GamesAverageRate = '" + average + "' WHERE GameName = '" + gameName + "'";
+        sql = "UPDATE Games SET GamesAverageRate = '" + formattedValue + "' WHERE GameName = '" + gameName + "'";
         st.execute(sql);
 
     }

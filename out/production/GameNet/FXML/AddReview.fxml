@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddReviewController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #88AB8E;">
          <children>
@@ -17,8 +16,8 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="24.0" layoutY="70.0" prefHeight="180.0" prefWidth="545.0" />
-            <Button layoutX="271.0" layoutY="272.0" mnemonicParsing="false" text="Save" />
+            <TextField fx:id="reviewTextField" layoutX="24.0" layoutY="70.0" prefHeight="180.0" prefWidth="545.0" />
+            <Button fx:id="saveButton" layoutX="271.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#saveButtonAction" text="Save" />
          </children>
       </AnchorPane>
    </children>

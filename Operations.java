@@ -16,6 +16,9 @@ import java.io.IOException;
 public class Operations {
 
     private static Stage popupStage = new Stage();
+
+
+    //FXMLLoader theLoader = new FXMLLoader(getClass().getResource("FXML/ClickedOnGame.fxml"));
     private Scene mainScene;
 
     @FXML
@@ -39,8 +42,12 @@ public class Operations {
     @FXML
     private ImageView userImage;
 
+    public Operations() throws IOException {
+    }
+
     @FXML
-    void initialize() {
+    void initialize() throws IOException {
+
         addImageViewsToMainPage();
     }
     @FXML
@@ -55,15 +62,6 @@ public class Operations {
 
     @FXML
     void refreshListener(MouseEvent event) throws IOException {
-
-        /*FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("FXML/MainPage.fxml"));
-        Parent root = rootLoader.load();
-
-        popupStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        mainScene = new Scene(root);
-        popupStage.setScene(mainScene);
-        popupStage.show();*/
-
         addImageViewsToMainPage();
 
     }
@@ -79,17 +77,24 @@ public class Operations {
         //sonra da o arraylist'de ismi olan bütün oyunları userGames listesinden al ve onları ekranda görüntüle
     }
 
-    private void addImageViewsToMainPage(){
+
+    private void addImageViewsToMainPage() throws IOException {
         for(int i = 0; i < Database.getUsersGames(Navigator.getUser().getUserID()).size(); i ++) {
+            String gameName = Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameName();
+            String gameType = Database.getGameType(gameName);
+            int gameRate = Database.getGameRate(Navigator.getUser().getUserID(), gameName);
+
             ImageView imageView = new ImageView(Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameImagePath());
             imageView.setFitWidth(100); // Set width
             imageView.setFitHeight(100); // Set height
             imageView.setPreserveRatio(true);
             gridForPhotos.add(imageView, i, 0);
 
+
+
             imageView.setOnMouseClicked(event -> {
                 try {
-                    popUp("FXML/ClickedOnGame.fxml", "Game Details");
+                    updateLabelAndPopUpGameInfo(gameName, gameType, gameRate);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -97,11 +102,44 @@ public class Operations {
         }
     }
 
-    public void popUp(String popUpResource, String popUpTitle) throws IOException {
-        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource(popUpResource));
-        Parent root = rootLoader.load();
+    @FXML
+    private void updateLabelAndPopUpGameInfo(String gameName, String gameType, int gameRate) throws IOException {
+        User theCurrentUser = Navigator.getUser();
+        FXMLLoader theLoader = new FXMLLoader(getClass().getResource("FXML/ClickedOnGame.fxml"));
+        Parent root = null;
+        try {
+            root = theLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        popupStage.setTitle("Game Details");
 
+        Scene popupScene = new Scene(root);
+        popupStage.setScene(popupScene);
+        popupStage.show();
 
+        ClickedOnGameController controller = theLoader.getController();
+        controller.setNameLabel(gameName);
+        controller.setTypeLabel(gameType);
+        controller.setRateChoiceBox(gameRate);
+        controller.setGameImageView(Database.getGameImage(gameName, theCurrentUser.getUserID()));
+        controller.setAverageRateLabel(Database.getGamesAverageRate(gameName));
+        controller.setRatedByLabel(Database.getRatedBy(gameName));
+    }
+
+    /*public void popUpGameInfo(String popUpTitle) throws IOException {
+        Parent root = theLoader.load();
+
+        popupStage.setTitle(popUpTitle);
+
+        Scene popupScene = new Scene(root);
+        popupStage.setScene(popupScene);
+        popupStage.show();
+    }*/
+
+    public void popUp(String resourceTitle, String popUpTitle) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceTitle));
+        Parent root = loader.load();
         popupStage.setTitle(popUpTitle);
 
         Scene popupScene = new Scene(root);
