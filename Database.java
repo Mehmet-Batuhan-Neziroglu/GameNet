@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 
 public class Database {
 
@@ -340,6 +341,8 @@ public class Database {
 
 
     public static void addOrUpdateGameRate(int userID, String gameName, int gameRate) throws SQLException {
+        Locale.setDefault(Locale.US);
+
         int ratedBy = 0;
         int counter = 0;
         double total = 0;
@@ -388,9 +391,10 @@ public class Database {
             counter++;
             System.out.println("denemexx22");
         }
-
+        System.out.println(total);
         average = total/counter;
-        String formattedValue = String.format("%.2f", average);
+        String formattedValue = String.format("%.1f", average);
+        System.out.println(formattedValue);
 
         sql = "UPDATE Games SET GamesAverageRate = '" + formattedValue + "' WHERE GameName = '" + gameName + "'";
         st.execute(sql);
