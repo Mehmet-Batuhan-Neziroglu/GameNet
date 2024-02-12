@@ -63,6 +63,21 @@ public class Database {
         return new User(userID, userName, password, firstName, lastName, mothersName, favouriteColor, games);
     }
 
+    public static String getUserNameById(int userID){
+        String usrName = null;
+        try {
+            Statement st = connection.createStatement();
+            String sql = "SELECT UserName FROM Users WHERE UserID = '" + userID + "'";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                usrName = rs.getString(1);  //bu index 1 idi
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usrName;
+    }
+
     public static String getGameImage(String gameName, int userID) {
         String gameImagePath = "";
         try {
@@ -294,14 +309,52 @@ public class Database {
         }
     }
 
-    public  static int getGameRate(int userId, String gameName){
-        int rate = 0;
+    public  static String getReview(int userId, String gameName){
+        String review = null;
+        try {
+            Statement st = connection.createStatement();
+            String sql = "SELECT Review FROM Reviews WHERE GameName = '" + gameName + "' AND UserID = '" + userId + "'";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                review = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return review;
+    }
+
+    public  static void fillUserIDAndReviewsList(String gameName){
+        int userId = 0;
+        String review = null;
+        try {
+            Statement st = connection.createStatement();
+            String sql = "SELECT UserID, Review FROM Reviews WHERE GameName = '" + gameName + "'";
+            ResultSet rs = st.executeQuery(sql);
+            System.out.println("not even here!?");
+            while (rs.next()) {
+                System.out.println("do yo enter here");
+                userId = rs.getInt("UserID");
+                review = rs.getString("Review");
+
+                Navigator.userIDListForReviews.add(userId);
+                Navigator.reviewsList.add(review);
+                System.out.println("or hereee");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public  static String getGameRate(int userId, String gameName){
+        String rate = null;
         try {
             Statement st = connection.createStatement();
             String sql = "SELECT Rate FROM Rates WHERE GameName = '" + gameName + "' AND UserID = '" + userId + "'";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                rate = rs.getInt(1);
+                rate = rs.getString(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -340,7 +393,7 @@ public class Database {
     }
 
 
-    public static void addOrUpdateGameRate(int userID, String gameName, int gameRate) throws SQLException {
+    public static void addOrUpdateGameRate(int userID, String gameName, String gameRate) throws SQLException {
         Locale.setDefault(Locale.US);
 
         int ratedBy = 0;
@@ -352,15 +405,12 @@ public class Database {
             //burası nedense hata vermiyor ve yeni rate kaydetmek istediğimde de buraya giriyor
             String sql = "SELECT Rate FROM Rates WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
             ResultSet rs = st.executeQuery(sql);
-            if(rs.next() != false) {
+            if(rs.next()) {
                 sql = "UPDATE Rates SET Rate = '" + gameRate + "' WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
                 st.execute(sql);
-                System.out.println("nooo");
             }
             else{
-                System.out.println("no times two");
-                SQLException sqlException = new SQLException();
-                throw sqlException;
+                throw new SQLException();
             }
 
         } catch (SQLException e) {

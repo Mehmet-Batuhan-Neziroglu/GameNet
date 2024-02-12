@@ -69,6 +69,12 @@ public class ProfileController {
     @FXML
     private Button applyChangesButton;
 
+    private Stage primaryStage;
+
+    /*public ProfileController(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }*/
+
     @FXML
     void changePasswordButtonAction(ActionEvent event) {
         if (newPasswordField.getText().toString().equals(repeatPasswordField.getText().toString()) && Database.checkPassword(Navigator.getUser().getUserName(), oldPasswordField.getText())) {
@@ -106,6 +112,7 @@ public class ProfileController {
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+        primaryStage.close();
     }
 
 }

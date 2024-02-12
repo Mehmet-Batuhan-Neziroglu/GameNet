@@ -7,8 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -21,8 +24,9 @@ import java.sql.SQLException;
 public class ClickedOnGameController {
 
     private static Stage popupStage = new Stage();
-    ObservableList<Integer> rates = FXCollections.observableArrayList();
+    ObservableList<String> rates = FXCollections.observableArrayList();
     Image image = null;
+    FXMLLoader rootLoader;
 
     @FXML
     private Button addReviewButton;
@@ -31,7 +35,7 @@ public class ClickedOnGameController {
     private Label averageRateLabel;
 
     @FXML
-    private Label nameLabel;
+    private Label gameNameLabel;
 
     @FXML
     private Button editButton;
@@ -40,7 +44,7 @@ public class ClickedOnGameController {
     private ImageView gameImageView;
 
     @FXML
-    private ChoiceBox<Integer> rateChoiceBox;
+    private ChoiceBox<String> rateChoiceBox;
 
     @FXML
     private Label ratedByLabel;
@@ -55,17 +59,97 @@ public class ClickedOnGameController {
     private Label successfullySavedLabel;
 
     @FXML
-    void initialize() {
+    private VBox ratesAndReviewsVBox;
+
+    boolean didEntered = false;
+
+    @FXML
+    void initialize() throws IOException {
+
         for (int i = 1; i < 6; i++) {
-            rates.add(i);
+            rates.add(String.valueOf(i));
         }
         rateChoiceBox.setItems(rates);
         gameImageView.setImage(image);
+
+
+        /*FXMLLoader theLoader = Navigator.clickedOnGameList.get(Navigator.clickedOnGameList.size() - 1);
+        ClickedOnGameController controller = theLoader.getController();
+
+        System.out.println(Navigator.clickedOnGameList.size());
+        System.out.println(controller.getGameName());
+        System.out.println(controller.ratedByLabel.getText());
+        System.out.println(controller.averageRateLabel.getText());
+
+        if(!didEntered) {
+            //yukarıdaki kod buradaydı
+
+            //controller.gameNameLabel.getText()
+            Database.fillUserIDAndReviewsList("League of Legends");
+            System.out.println(controller.gameNameLabel.getText());
+            for (int i = 0; i < Navigator.reviewsList.size(); i++) {
+                if (Navigator.reviewsList.get(0) != null) {
+                    System.out.println("denememmmmm222");
+                    FXMLLoader theLoaderTwo = new FXMLLoader(getClass().getResource("FXML/CommentBox.fxml"));
+                    Parent root = theLoaderTwo.load();
+                    CommentBoxController cbController = theLoaderTwo.getController();
+
+                    cbController.setNameLabel(Database.getUserNameById(Navigator.userIDListForReviews.get(i)));
+                    System.out.println(Database.getUserNameById(Navigator.userIDListForReviews.get(i)));
+                    cbController.setRateLabel(Database.getGameRate(Navigator.userIDListForReviews.get(i), controller.gameNameLabel.getText()));
+                    cbController.setCommentLabel(Navigator.reviewsList.get(i));
+                    controller.addToTheVBox(cbController.getTheAnchorPane());
+                }
+            }
+        }*/
+    }
+
+    /*@FXML
+    private void setLabelsWhenClickedOnGame(String gameName, String gameType, String gameRate, ClickedOnGameController controller) throws IOException {
+        User theCurrentUser = Navigator.getUser();
+        System.out.println("nasıl");
+        System.out.println("yani");
+        controller.setGameNameLabel(gameName);
+        controller.setTypeLabel(gameType);
+        controller.setRateChoiceBox(gameRate);
+        System.out.println("öncelik kimde");
+        controller.setGameImageView(Database.getGameImage(gameName, theCurrentUser.getUserID()));
+        controller.setAverageRateLabel(Database.getGamesAverageRate(gameName));
+        controller.setRatedByLabel(Database.getRatedBy(gameName));
+    }*/
+
+    public void setVBoxes() throws IOException {
+        FXMLLoader theLoader = Navigator.clickedOnGameList.get(Navigator.clickedOnGameList.size() - 1);
+        ClickedOnGameController controller = theLoader.getController();
+
+        System.out.println(Navigator.clickedOnGameList.size());
+        System.out.println(controller.getGameName());
+        System.out.println(controller.ratedByLabel.getText());
+        System.out.println(controller.averageRateLabel.getText());
+
+        if(!didEntered) {
+            Database.fillUserIDAndReviewsList(controller.gameNameLabel.getText());
+            System.out.println(controller.gameNameLabel.getText());
+            for (int i = 0; i < Navigator.reviewsList.size(); i++) {
+                if (Navigator.reviewsList.get(0) != null) {
+                    System.out.println("denememmmmm222");
+                    FXMLLoader theLoaderTwo = new FXMLLoader(getClass().getResource("FXML/CommentBox.fxml"));
+                    Parent root = theLoaderTwo.load();
+                    CommentBoxController cbController = theLoaderTwo.getController();
+
+                    cbController.setNameLabel(Database.getUserNameById(Navigator.userIDListForReviews.get(i)));
+                    System.out.println(Database.getUserNameById(Navigator.userIDListForReviews.get(i)));
+                    cbController.setRateLabel(Database.getGameRate(Navigator.userIDListForReviews.get(i), controller.gameNameLabel.getText()));
+                    cbController.setCommentLabel(Navigator.reviewsList.get(i));
+                    controller.addToTheVBox(cbController.getTheAnchorPane());
+                }
+            }
+        }
     }
 
     @FXML
     void addReviewButtonAction(MouseEvent event) throws IOException {
-        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("FXML/AddReview.fxml"));
+        rootLoader = new FXMLLoader(getClass().getResource("FXML/AddReview.fxml"));
         Parent root = rootLoader.load();
 
 
@@ -79,10 +163,10 @@ public class ClickedOnGameController {
     @FXML
     void saveButtonAction(MouseEvent event) throws SQLException {
         //oyun ismini nasıl alabileceğimizi bulmalıyız
-        Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), nameLabel.getText(), rateChoiceBox.getValue());
-        rateChoiceBox.setValue(Database.getGameRate(Navigator.getUser().getUserID(), nameLabel.getText()));
+        Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), gameNameLabel.getText(), rateChoiceBox.getValue());
+        rateChoiceBox.setValue(Database.getGameRate(Navigator.getUser().getUserID(), gameNameLabel.getText()));
         successfullySavedLabel.setTextFill(Color.color(0, 1, 0));
-        successfullySavedLabel.setText("Successfully Saved");
+        successfullySavedLabel.setText("Successfully Saved"); //bu bütün frame'lerde gözükmüyor ????
     }
 
     @FXML
@@ -96,21 +180,29 @@ public class ClickedOnGameController {
         if (selectedFile != null) {
             image = new Image(selectedFile.toURI().toString());
             gameImageView.setImage(image);
-            Database.addImage(Navigator.getUser().getUserID(), nameLabel.getText(), selectedFile.toURI().toString());
+            Database.addImage(Navigator.getUser().getUserID(), gameNameLabel.getText(), selectedFile.toURI().toString());
         }
     }
 
 
-    public void setNameLabel(String name) {
-        nameLabel.setText(name);
+    public void setGameNameLabel(String name) {
+        gameNameLabel.setText(name);
+    }
+
+    public String getGameName() {
+        return  gameNameLabel.getText();
     }
 
     public void setTypeLabel(String type) {
         typeLabel.setText(type);
     }
 
-    public void setRateChoiceBox(int rate){
+    public void setRateChoiceBox(String rate){
         rateChoiceBox.setValue(rate);
+    }
+
+    public String getRate(){
+        return rateChoiceBox.getValue();
     }
 
     public  void setGameImageView(String imageUrl){
@@ -128,4 +220,7 @@ public class ClickedOnGameController {
         ratedByLabel.setText(ratedBy + "");
     }
 
+    public void addToTheVBox(AnchorPane commentBox){
+        ratesAndReviewsVBox.getChildren().add(commentBox);
+    }
 }

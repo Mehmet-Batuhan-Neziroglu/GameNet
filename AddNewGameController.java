@@ -1,5 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -11,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -88,7 +91,7 @@ public class AddNewGameController {
         int sliderValue = (int)rateGameSlider.getValue();
         // Perform any other actions with the value, such as saving it to a database
         try {
-            Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), gameNameComboBox.getValue(), sliderValue);
+            Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), gameNameComboBox.getValue(), String.valueOf(sliderValue));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -96,7 +99,7 @@ public class AddNewGameController {
 
 
     @FXML
-    void saveButtonAction(MouseEvent event) {
+    void saveButtonAction(MouseEvent event) throws IOException {
         ArrayList<Game> usersGames = Database.getUsersGames(Navigator.getUser().getUserID());
         boolean isExists = false;
 
@@ -105,7 +108,7 @@ public class AddNewGameController {
                 isExists = true;
             }
         }
-        if(isExists == false) {
+        if(!isExists) {
             Game game = new Game(gameNameComboBox.getValue(), Database.getGameImage(gameNameComboBox.getValue(), Navigator.getUser().getUserID()));
             Database.saveGame(game, Navigator.getUser().getUserID());
             addNewGameErrorLabel.setTextFill(Color.color(0, 1, 0));
@@ -117,7 +120,11 @@ public class AddNewGameController {
             addNewGameErrorLabel.setText("The game you are trying to add already exists in your games table");
         }
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/MainPage.fxml"));
+        Parent parent = loader.load();
+        Operations operations = loader.getController();
 
+        operations.initialize();
     }
 
 }

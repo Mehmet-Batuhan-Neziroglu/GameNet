@@ -11,7 +11,14 @@ import java.util.ArrayList;
  */
 public class Navigator extends Application{
 
+    public static ArrayList<FXMLLoader> clickedOnGameList  = new ArrayList<>();
+    public static ArrayList<FXMLLoader> commentBoxList  = new ArrayList<>();
+    public static ArrayList<String> reviewsList  = new ArrayList<>();
+    public static ArrayList<Integer> userIDListForReviews = new ArrayList<>();
+
     private static User user;
+
+    private static ArrayList<FXMLLoader> arr;
     private static ArrayList<String> games = Database.getGames();
     private static boolean isSignIn;
 
@@ -29,13 +36,6 @@ public class Navigator extends Application{
     }
 
     public static void main(String[] args) {
-        /*if (Database.getLatestDate().isBefore(LocalDate.now())) {
-            try {
-                GetCurrencyRates.saveHistoricalData();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }*/
         launch(args);
     }
     
@@ -51,7 +51,7 @@ public class Navigator extends Application{
         return games;
     }
     
-public static boolean getIsSignIn() {
+    public static boolean getIsSignIn() {
         return isSignIn;
     }
 

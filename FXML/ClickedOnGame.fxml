@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -20,7 +21,7 @@
             <Label layoutX="13.0" layoutY="115.0" text="Type" />
             <Label layoutX="15.0" layoutY="185.0" text="Rate" />
             <Label layoutX="11.0" layoutY="50.0" text="Name" />
-            <Label fx:id="nameLabel" layoutX="12.0" layoutY="74.0" prefHeight="27.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;" />
+            <Label fx:id="gameNameLabel" layoutX="12.0" layoutY="74.0" prefHeight="27.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;" />
             <Label fx:id="typeLabel" layoutX="12.0" layoutY="139.0" prefHeight="27.0" prefWidth="143.0" style="-fx-background-color: F7FAFC;" />
             <Label layoutX="16.0" layoutY="254.0" text="AVERAGE RATE">
                <font>
@@ -35,7 +36,6 @@
             </Label>
             <Button fx:id="saveButton" layoutX="79.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#saveButtonAction" text="Save" />
             <ChoiceBox fx:id="rateChoiceBox" layoutX="12.0" layoutY="206.0" prefHeight="26.0" prefWidth="62.0" />
-            <VBox layoutX="318.0" layoutY="40.0" prefHeight="350.0" prefWidth="270.0" style="-fx-background-color: F7FAFC;" />
             <Label layoutX="318.0" layoutY="7.0" prefHeight="40.0" prefWidth="198.0" text="RATINGS &amp; REVİEWS">
                <font>
                   <Font size="18.0" />
@@ -54,6 +54,11 @@
             </Label>
             <Button fx:id="editButton" layoutX="218.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#editButtonAction" text="Edit" />
             <Label fx:id="successfullySavedLabel" layoutX="13.0" layoutY="232.0" prefHeight="26.0" prefWidth="143.0" />
+            <ScrollPane layoutX="317.0" layoutY="39.0" prefHeight="354.0" prefWidth="278.0">
+               <content>
+                  <VBox fx:id="ratesAndReviewsVBox" prefHeight="352.0" prefWidth="276.0" />
+               </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
    </children>
