@@ -5,28 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b177f272-e1f1-4a73-ac91-f2c5b85f053f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/AddNewGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AddNewGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AddReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AddReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClickedOnGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClickedOnGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommentBoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommentBoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FXML/ClickedOnGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/FXML/ClickedOnGame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FXML/CommentBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/FXML/CommentBox.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Navigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Navigator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Operations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Operations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/AddNewGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/AddNewGameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/AddReviewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/AddReviewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/ClickedOnGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/ClickedOnGameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/CommentBoxController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/CommentBoxController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/FXML/ClickedOnGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/FXML/ClickedOnGame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/FXML/CommentBox.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/FXML/CommentBox.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/Navigator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/Navigator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/Operations.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/Operations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/ProfileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GameNet/ProfileController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GameNet/SortingAndSearchingwe.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

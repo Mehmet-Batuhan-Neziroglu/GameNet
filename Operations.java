@@ -82,6 +82,7 @@ public class Operations{
         //sonra da o arraylist'de ismi olan bütün oyunları userGames listesinden al ve onları ekranda görüntüle
     }
 
+    boolean didEntered = false;
 
     private void addImageViewsToMainPage() throws IOException {
         for(int i = 0; i < Database.getUsersGames(Navigator.getUser().getUserID()).size(); i ++) {
@@ -153,6 +154,7 @@ public class Operations{
     }*/
     @FXML
     private void updateLabelAndPopUpGameInfo(String gameName, String gameType, String gameRate) throws IOException {
+        Navigator.reviewsList.clear();
         System.out.println("who is");
         User theCurrentUser = Navigator.getUser();
         FXMLLoader theLoader = new FXMLLoader(getClass().getResource("FXML/ClickedOnGame.fxml"));
@@ -185,7 +187,6 @@ public class Operations{
         controller.setRatedByLabel(Database.getRatedBy(gameName));
 
         controller.setVBoxes();
-
     }
 
     public void popUp(String resourceTitle, String popUpTitle) throws IOException {
