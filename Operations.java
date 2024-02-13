@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import java.io.IOException;
+
 public class Operations{
 
     private Stage primaryStage;
@@ -42,7 +44,11 @@ public class Operations{
     @FXML
     private ImageView userImage;
 
+    @FXML
+    private Button logoutButton;
 
+    private Scene scene;
+    private Stage stage;
     /*@Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
@@ -197,6 +203,16 @@ public class Operations{
         Scene popupScene = new Scene(root);
         popupStage.setScene(popupScene);
         popupStage.show();
+    }
+
+    @FXML
+    void logoutButtonListener(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXML/LoginPage.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
 }

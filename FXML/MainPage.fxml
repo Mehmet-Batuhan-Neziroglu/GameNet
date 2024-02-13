@@ -16,7 +16,7 @@
    <children>
       <AnchorPane prefHeight="150.0" prefWidth="1600.0" style="-fx-background-color: #F7FAFC;">
          <children>
-            <ImageView fx:id="userImage" fitHeight="106.0" fitWidth="115.0" layoutX="5.0" layoutY="18.0" onMouseClicked="#profileListener" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="userImage" fitHeight="106.0" fitWidth="115.0" layoutY="2.0" onMouseClicked="#profileListener" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/user%20logo.png" />
                </image>
@@ -24,7 +24,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="refreshImage" fitHeight="94.0" fitWidth="113.0" layoutX="111.0" layoutY="25.0" onMouseClicked="#refreshListener" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="refreshImage" fitHeight="94.0" fitWidth="113.0" layoutX="106.0" layoutY="8.0" onMouseClicked="#refreshListener" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/reload%20logo.png" />
                </image>
@@ -58,6 +58,12 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
+            <Button fx:id="logoutButton" layoutX="68.0" layoutY="100.0" mnemonicParsing="false" onAction="#logoutButtonListener" prefHeight="44.0" prefWidth="122.0" text="Logout" />
+            <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="8.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Logos/logout.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <ScrollPane layoutY="150.0" prefHeight="764.0" prefWidth="1600.0">

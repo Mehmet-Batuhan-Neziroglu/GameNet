@@ -8,20 +8,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ProfileController {
-
-    private Scene scene;
-    private Stage stage;
-
-    @FXML
-    private Button logoutButton;
 
 
     @FXML
@@ -71,9 +62,6 @@ public class ProfileController {
 
     private Stage primaryStage;
 
-    /*public ProfileController(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }*/
 
     @FXML
     void changePasswordButtonAction(ActionEvent event) {
@@ -104,15 +92,6 @@ public class ProfileController {
         }
     }
 
-    @FXML
-    void logoutButtonListener(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML/LoginPage.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
-        primaryStage.close();
-    }
+
 
 }
