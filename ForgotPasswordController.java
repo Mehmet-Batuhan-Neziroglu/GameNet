@@ -58,7 +58,7 @@ public class ForgotPasswordController {
 
     @FXML
     void forgotPasswordBackButtonListener(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML/SignIn.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXML/LoginPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

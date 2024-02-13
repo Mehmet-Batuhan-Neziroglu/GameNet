@@ -31,7 +31,7 @@ public class CommentBoxController {
     }
 
     public void setRateLabel(String rate){
-        nameLabel.setText(rate);
+        rateLabel.setText(rate);
     }
 
 

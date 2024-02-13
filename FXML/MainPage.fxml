@@ -58,7 +58,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="logoutButton" layoutX="68.0" layoutY="100.0" mnemonicParsing="false" onAction="#logoutButtonListener" prefHeight="44.0" prefWidth="122.0" text="Logout" />
+            <Button fx:id="logoutButton" layoutX="68.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#logoutButtonListener" prefHeight="44.0" prefWidth="122.0" text="Logout" />
             <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="8.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/logout.png" />
