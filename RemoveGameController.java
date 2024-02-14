@@ -8,8 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
-import java.util.Collections;
-
 public class RemoveGameController {
 
     ObservableList<String> usersGameList = FXCollections.observableArrayList();
@@ -41,9 +39,12 @@ public class RemoveGameController {
     @FXML
     void removeButtonAction(MouseEvent event) {
         String gameToRemove = gameNameComboBox.getValue();
-        if(!gameToRemove.equals("Choose a game")){
+        if(!gameToRemove.equals("Choose a game") && Database.checkIsGameInUsersGame(gameToRemove)){
             //fill this method
-            Database.removeUsersGame(Navigator.getUser().getUserID(), gameToRemove);
+            Database.removeUsersGame(gameToRemove, Navigator.getUser().getUserID());
+
+            warningLabel.setTextFill(Color.color(0, 1, 0));
+            warningLabel.setText("Successfully removed, please refresh your screen");
         }
         else{
             warningLabel.setTextFill(Color.color(1, 0, 0));

@@ -257,7 +257,17 @@ public class Database {
         return favouriteColor.equals(userFavouriteColor);
     }
 
+    public static boolean checkIsGameInUsersGame(String gameName){
+        ArrayList<Game> arr = getUsersGames(Navigator.getUser().getUserID());
 
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getGameName().equals(gameName)) {
+                return true;
+            }
+        }
+
+        return  false;
+    }
 
     public static ArrayList<Game> getUsersGames(int userID) {
         ArrayList<Game> games = new ArrayList<Game>();
@@ -277,9 +287,6 @@ public class Database {
         return games;
     }
 
-    public static void removeUsersGame(int userID, String gameName){
-
-    }
     public static void saveGame(Game game, int userID) {
         try {
             Statement st = connection.createStatement();
@@ -291,7 +298,7 @@ public class Database {
         }
     }
 
-    public static void deleteGame(String gameName, int userID) {
+    public static void removeUsersGame(String gameName, int userID) {
         try {
             Statement st = connection.createStatement();
             String sql = "DELETE FROM UsersGames WHERE GameName = '" + gameName + "' AND UserID = '" + userID + "'";
@@ -299,6 +306,10 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        Navigator.gamesList.clear();
+        Navigator.gamesList = Database.getUsersGames(Navigator.getUser().getUserID());
+
     }
 
     public static void addReview(int userID, String gameName, String review){

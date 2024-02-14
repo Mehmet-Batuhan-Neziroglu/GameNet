@@ -113,7 +113,7 @@ public class User {
                 games.remove(i);
             }
         }
-        Database.deleteGame(gameName, userID);
+        //Database.deleteGame(gameName, userID);
     }
 
 }
