@@ -83,8 +83,8 @@ public class Operations{
     }
 
     @FXML
-    void removeListener(MouseEvent event) {
-
+    void removeListener(MouseEvent event) throws IOException {
+        popUp("FXML/RemoveGame.fxml", "Remove Game");
     }
 
     @FXML

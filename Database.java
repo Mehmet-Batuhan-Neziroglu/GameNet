@@ -277,6 +277,9 @@ public class Database {
         return games;
     }
 
+    public static void removeUsersGame(int userID, String gameName){
+
+    }
     public static void saveGame(Game game, int userID) {
         try {
             Statement st = connection.createStatement();

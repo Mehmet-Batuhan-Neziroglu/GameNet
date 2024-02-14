@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="414.0" style="-fx-background-color: #88AB8E;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RemoveGameController">
+   <children>
+      <AnchorPane prefHeight="270.0" prefWidth="414.0">
+         <children>
+            <Button fx:id="removeButton" layoutX="177.0" layoutY="202.0" mnemonicParsing="false" onMouseClicked="#removeButtonAction" text="Remove" />
+            <Label layoutX="64.0" layoutY="24.0" prefHeight="46.0" prefWidth="286.0" text="Select A Game To Remove" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="gameNameComboBox" layoutX="86.0" layoutY="112.0" onAction="#gameNameComboBoxActionListener" prefHeight="46.0" prefWidth="241.0" />
+            <Label fx:id="warningLabel" layoutX="150.0" layoutY="79.0" text="Please select a game!" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
