@@ -16,7 +16,7 @@
    <children>
       <AnchorPane prefHeight="150.0" prefWidth="1600.0" style="-fx-background-color: #F7FAFC;">
          <children>
-            <ImageView fx:id="userImage" fitHeight="106.0" fitWidth="115.0" layoutY="2.0" onMouseClicked="#profileListener" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="userImage" fitHeight="94.0" fitWidth="94.0" layoutX="3.0" layoutY="21.0" onMouseClicked="#profileListener" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/user%20logo.png" />
                </image>
@@ -24,7 +24,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="refreshImage" fitHeight="94.0" fitWidth="113.0" layoutX="106.0" layoutY="8.0" onMouseClicked="#refreshListener" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="refreshImage" fitHeight="94.0" fitWidth="104.0" layoutX="120.0" layoutY="21.0" onMouseClicked="#refreshListener" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/reload%20logo.png" />
                </image>
@@ -32,7 +32,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Button fx:id="addButton" layoutX="238.0" mnemonicParsing="false" onMouseClicked="#addListener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Add+" textFill="#22a800">
+            <Button fx:id="addButton" layoutX="234.0" mnemonicParsing="false" onMouseClicked="#addListener" prefHeight="135.0" prefWidth="280.0" style="-fx-background-color: #F7FAFC;" text="Add+" textFill="#22a800">
                <font>
                   <Font size="24.0" />
                </font>
@@ -40,7 +40,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="removeButton" layoutX="598.0" mnemonicParsing="false" onMouseClicked="#removeListener" prefHeight="150.0" prefWidth="350.0" style="-fx-background-color: #F7FAFC;" text="Remove-" textFill="RED">
+            <Button fx:id="removeButton" layoutX="536.0" mnemonicParsing="false" onMouseClicked="#removeListener" prefHeight="135.0" prefWidth="280.0" style="-fx-background-color: #F7FAFC;" text="Remove-" textFill="RED">
                <font>
                   <Font size="24.0" />
                </font>
@@ -48,25 +48,25 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="searchBar" layoutX="1084.0" layoutY="54.0" prefHeight="44.0" prefWidth="400.0" />
-            <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="1024.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="searchBar" layoutX="884.0" layoutY="54.0" prefHeight="44.0" prefWidth="400.0" />
+            <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="824.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/search%20logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="searchButton" layoutX="1498.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#searchListener" prefHeight="42.0" prefWidth="70.0" text="Search">
+            <Button fx:id="searchButton" layoutX="1298.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#searchListener" prefHeight="42.0" prefWidth="70.0" text="Search">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="logoutButton" layoutX="68.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#logoutButtonListener" prefHeight="44.0" prefWidth="122.0" text="Logout" />
-            <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="8.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="logoutButton" layoutX="1464.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#logoutButtonListener" prefHeight="44.0" prefWidth="122.0" text="Logout" />
+            <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="1404.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Logos/logout.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <ScrollPane fx:id="scrollPane" layoutY="150.0" prefHeight="764.0" prefWidth="1600.0">
+      <ScrollPane fx:id="scrollPane" layoutY="134.0" prefHeight="780.0" prefWidth="1600.0">
          <content>
             <GridPane fx:id="gridForPhotos" prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #88AB8E;">
               <columnConstraints>
