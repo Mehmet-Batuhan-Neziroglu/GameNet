@@ -26,7 +26,7 @@ public class AddReviewController {
         Parent root = theLoaderTwo.load();
         CommentBoxController cbController = theLoaderTwo.getController();
 
-        cbController.setNameLabel(Navigator.getUser().getFirstName() + Navigator.getUser().getLastName());
+        cbController.setNameLabel(Navigator.getUser().getUserName());
         cbController.setRateLabel(controller.getRate());
         cbController.setCommentLabel(reviewTextField.getText());
         controller.addToTheVBox(cbController.getTheAnchorPane());
