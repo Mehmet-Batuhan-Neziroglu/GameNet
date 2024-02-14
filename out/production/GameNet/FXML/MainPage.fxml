@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -54,7 +55,7 @@
                   <Image url="@../Logos/search%20logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="searchButton" layoutX="1298.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#searchListener" prefHeight="42.0" prefWidth="70.0" text="Search">
+            <Button fx:id="searchButton" layoutX="1298.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#searchListener" prefHeight="42.0" prefWidth="70.0" text="Search">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -64,6 +65,8 @@
                   <Image url="@../Logos/logout.png" />
                </image>
             </ImageView>
+            <Label fx:id="theChooserLabel" alignment="TOP_CENTER" layoutX="884.0" layoutY="102.0" prefHeight="25.0" prefWidth="400.0" textAlignment="CENTER" />
+            <Button fx:id="sortButton" layoutX="1298.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#sortListener" prefHeight="42.0" prefWidth="70.0" text="Sort" />
          </children>
       </AnchorPane>
       <ScrollPane fx:id="scrollPane" layoutY="134.0" prefHeight="780.0" prefWidth="1600.0">

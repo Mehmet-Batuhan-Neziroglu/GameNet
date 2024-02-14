@@ -1,21 +1,19 @@
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import java.io.IOException;
+import java.util.Random;
 
 public class Operations{
 
@@ -34,6 +32,9 @@ public class Operations{
     private GridPane gridForPhotos;
 
     @FXML
+    private Label theChooserLabel;
+
+    @FXML
     private ImageView refreshImage;
 
     @FXML
@@ -44,6 +45,9 @@ public class Operations{
 
     @FXML
     private Button searchButton;
+
+    @FXML
+    private Button sortButton;
 
     @FXML
     private ImageView userImage;
@@ -66,6 +70,7 @@ public class Operations{
         Navigator.gamesList = Database.getUsersGames(Navigator.getUser().getUserID());
         addImageViewsToMainPage();
     }
+
     @FXML
     void addListener(MouseEvent event) throws IOException {
         popUp("FXML/AddNewGame.fxml", "Add Game");
@@ -91,8 +96,42 @@ public class Operations{
     void searchListener(MouseEvent event) throws IOException {
         //random bir şekilde arama algoritmalarından bir tanesini kullan, elindeki listeyi burada bir ArrayList'e kaydet,
         //sonra da o arraylist'de ismi olan bütün oyunları userGames listesinden al ve onları ekranda görüntüle
-        SortingAndSearching.linearSearch(searchBar.getText());
+        Random rand = new Random();
+
+        int theNumber = rand.nextInt(3);
+
+        if (theNumber == 1){
+            SortingAndSearching.linearSearch(searchBar.getText());
+            theChooserLabel.setText("The Linear Search is used while searching");
+        }
+        else if (theNumber == 2) {
+            SortingAndSearching.binarySearch(searchBar.getText());
+            theChooserLabel.setText("The Binary Search is used while searching");
+        }
+
         addImageViewsToMainPage();
+    }
+
+    @FXML
+    void sortListener(MouseEvent event) {
+
+        Random rand = new Random();
+
+        int theNumber = rand.nextInt(3,6);
+
+        if (theNumber == 3) {
+            SortingAndSearching.bubbleSort(Navigator.gamesList);
+            theChooserLabel.setText("The Bubble Sort is used while sorting");
+        }
+        else if (theNumber == 4) {
+            SortingAndSearching.selectionSort(Navigator.gamesList);
+            theChooserLabel.setText("The Selection Sort is used while sorting");
+        }
+        else if(theNumber == 5){
+            SortingAndSearching.insertionSort(Navigator.gamesList);
+            theChooserLabel.setText("The Insertion Sort is used while sorting");
+        }
+
     }
 
     boolean didEntered = false;
