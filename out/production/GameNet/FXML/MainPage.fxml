@@ -54,7 +54,7 @@
                   <Image url="@../Logos/search%20logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="searchButton" layoutX="1498.0" layoutY="55.0" mnemonicParsing="false" onContextMenuRequested="#searchListener" prefHeight="42.0" prefWidth="70.0" text="Search">
+            <Button fx:id="searchButton" layoutX="1498.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#searchListener" prefHeight="42.0" prefWidth="70.0" text="Search">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -66,7 +66,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ScrollPane layoutY="150.0" prefHeight="764.0" prefWidth="1600.0">
+      <ScrollPane fx:id="scrollPane" layoutY="150.0" prefHeight="764.0" prefWidth="1600.0">
          <content>
             <GridPane fx:id="gridForPhotos" prefHeight="1075.0" prefWidth="1600.0" style="-fx-background-color: #88AB8E;">
               <columnConstraints>

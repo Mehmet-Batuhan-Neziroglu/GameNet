@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
@@ -25,6 +26,9 @@ public class Operations{
 
     @FXML
     private Button addButton;
+
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     private GridPane gridForPhotos;
@@ -59,6 +63,7 @@ public class Operations{
 
     @FXML
     void initialize() throws IOException {
+        Navigator.gamesList = Database.getUsersGames(Navigator.getUser().getUserID());
         addImageViewsToMainPage();
     }
     @FXML
@@ -83,20 +88,28 @@ public class Operations{
     }
 
     @FXML
-    void searchListener(ContextMenuEvent event) {
+    void searchListener(MouseEvent event) throws IOException {
         //random bir şekilde arama algoritmalarından bir tanesini kullan, elindeki listeyi burada bir ArrayList'e kaydet,
         //sonra da o arraylist'de ismi olan bütün oyunları userGames listesinden al ve onları ekranda görüntüle
+        SortingAndSearching.linearSearch(searchBar.getText());
+        addImageViewsToMainPage();
     }
 
     boolean didEntered = false;
 
     private void addImageViewsToMainPage() throws IOException {
-        for(int i = 0; i < Database.getUsersGames(Navigator.getUser().getUserID()).size(); i ++) {
-            String gameName = Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameName();
+        gridForPhotos.getChildren().clear();
+        //Navigator.gamesList = Database.getUsersGames(Navigator.getUser().getUserID());
+        for(int i = 0; i < Navigator.gamesList.size(); i ++) {
+            //String gameName = Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameName();
+            //String gameType = Database.getGameType(gameName);
+            //String gameRate = Database.getGameRate(Navigator.getUser().getUserID(), gameName);
+
+            String gameName = Navigator.gamesList.get(i).getGameName();
             String gameType = Database.getGameType(gameName);
             String gameRate = Database.getGameRate(Navigator.getUser().getUserID(), gameName);
 
-            ImageView imageView = new ImageView(Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameImagePath());
+            ImageView imageView = new ImageView(Navigator.gamesList.get(i).getGameImagePath());
             imageView.setFitWidth(100); // Set width
             imageView.setFitHeight(100); // Set height
             imageView.setPreserveRatio(true);

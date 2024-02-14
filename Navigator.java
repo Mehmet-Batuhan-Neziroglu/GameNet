@@ -16,9 +16,10 @@ public class Navigator extends Application{
     public static ArrayList<String> reviewsList  = new ArrayList<>();
     public static ArrayList<Integer> userIDListForReviews = new ArrayList<>();
 
+    public static ArrayList<Game> gamesList;
+
     private static User user;
 
-    private static ArrayList<FXMLLoader> arr;
     private static ArrayList<String> games = Database.getGames();
     private static boolean isSignIn;
 

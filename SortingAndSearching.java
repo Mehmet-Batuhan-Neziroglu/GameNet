@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 
 public class SortingAndSearching {
-    public static int linearSearch(String gameName, ArrayList<Game> gameList){
+    public static void linearSearch(String searchedText){
+        Navigator.gamesList.clear();
         //gameName'de dönebilir game objesi de, duruma göre
-        for(int i = 0; i < gameList.size(); i ++){
-            if(gameName.equals(gameList.get(i))){
-                return i;
+        for(int i = 0; i < Database.getUsersGames(Navigator.getUser().getUserID()).size(); i ++){
+            if(Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameName().toLowerCase().contains(searchedText.toLowerCase())){
+                Navigator.gamesList.add(Database.getUsersGames(Navigator.getUser().getUserID()).get(i));
+                System.out.println(Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameName());
             }
         }
-        return -1;
     }
 
     public static String binarySearch(String gameName, ArrayList<Game> gameList){  //bunun bubble sort'unu sanırım methpdu çağırdığımız yerde yapacağız
