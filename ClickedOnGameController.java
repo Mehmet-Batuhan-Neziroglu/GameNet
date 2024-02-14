@@ -7,15 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.image.ImageView;
 
 import java.io.File;
 import java.io.IOException;
@@ -177,6 +176,7 @@ public class ClickedOnGameController {
             image = new Image(selectedFile.toURI().toString());
             gameImageView.setImage(image);
             Database.addImage(Navigator.getUser().getUserID(), gameNameLabel.getText(), selectedFile.toURI().toString());
+            Navigator.gamesList = Database.getUsersGames(Navigator.getUser().getUserID());
         }
     }
 
