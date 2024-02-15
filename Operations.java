@@ -69,6 +69,7 @@ public class Operations{
     void initialize() throws IOException {
         Navigator.gamesList = Database.getUsersGames(Navigator.getUser().getUserID());
         addImageViewsToMainPage();
+        theChooserLabel.setText("");
     }
 
     @FXML
@@ -83,7 +84,7 @@ public class Operations{
 
     @FXML
     void refreshListener(MouseEvent event) throws IOException {
-        addImageViewsToMainPage();
+        initialize();
 
     }
 
@@ -97,52 +98,49 @@ public class Operations{
         //random bir şekilde arama algoritmalarından bir tanesini kullan, elindeki listeyi burada bir ArrayList'e kaydet,
         //sonra da o arraylist'de ismi olan bütün oyunları userGames listesinden al ve onları ekranda görüntüle
         Random rand = new Random();
-
         int theNumber = rand.nextInt(3);
 
-        if (theNumber == 1){
-            SortingAndSearching.linearSearch(searchBar.getText());
-            theChooserLabel.setText("The Linear Search is used while searching");
-        }
-        else if (theNumber == 2) {
-            SortingAndSearching.binarySearch(searchBar.getText());
-            theChooserLabel.setText("The Binary Search is used while searching");
+        if(!searchBar.getText().isEmpty()) {
+            if (theNumber == 1) {
+                SortingAndSearching.linearSearch(searchBar.getText());
+                theChooserLabel.setText("The Linear Search is used while searching");
+            } else if (theNumber == 2) {
+                SortingAndSearching.binarySearch(searchBar.getText());
+                theChooserLabel.setText("The Binary Search is used while searching");
+            }
         }
 
         addImageViewsToMainPage();
     }
 
     @FXML
-    void sortListener(MouseEvent event) {
+    void sortListener(MouseEvent event) throws IOException {
 
         Random rand = new Random();
 
         int theNumber = rand.nextInt(3,6);
 
         if (theNumber == 3) {
-            SortingAndSearching.bubbleSort(Navigator.gamesList);
+            SortingAndSearching.bubbleSort();
             theChooserLabel.setText("The Bubble Sort is used while sorting");
         }
         else if (theNumber == 4) {
-            SortingAndSearching.selectionSort(Navigator.gamesList);
+            SortingAndSearching.selectionSort();
             theChooserLabel.setText("The Selection Sort is used while sorting");
         }
         else if(theNumber == 5){
-            SortingAndSearching.insertionSort(Navigator.gamesList);
+            SortingAndSearching.insertionSort();
             theChooserLabel.setText("The Insertion Sort is used while sorting");
         }
 
+        addImageViewsToMainPage();
     }
 
     boolean didEntered = false;
 
     private void addImageViewsToMainPage() throws IOException {
         gridForPhotos.getChildren().clear();
-        //Navigator.gamesList = Database.getUsersGames(Navigator.getUser().getUserID());
         for(int i = 0; i < Navigator.gamesList.size(); i ++) {
-            //String gameName = Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameName();
-            //String gameType = Database.getGameType(gameName);
-            //String gameRate = Database.getGameRate(Navigator.getUser().getUserID(), gameName);
 
             String gameName = Navigator.gamesList.get(i).getGameName();
             String gameType = Database.getGameType(gameName);
@@ -213,6 +211,8 @@ public class Operations{
     @FXML
     private void updateLabelAndPopUpGameInfo(String gameName, String gameType, String gameRate) throws IOException {
         Navigator.reviewsList.clear();
+        Navigator.clickedOnGameList.clear();
+
         System.out.println("who is");
         User theCurrentUser = Navigator.getUser();
         FXMLLoader theLoader = new FXMLLoader(getClass().getResource("FXML/ClickedOnGame.fxml"));
@@ -220,7 +220,7 @@ public class Operations{
 
 
         System.out.println("the king");
-        Parent root = null; //NEDEN BU ROOTUN ÖNCELİĞİ VAR? YUKARIDA OLUNCA BURADAN ÇIKIP CLICKEDONGAME INITIALIZER INA GİDİYOR
+        Parent root = null;
         try {
             root = theLoader.load();
         } catch (IOException e) {
