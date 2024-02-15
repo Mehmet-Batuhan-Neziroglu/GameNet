@@ -428,7 +428,6 @@ public class Database {
             }
 
         } catch (SQLException e) {
-            System.out.println("aaaaaa");
             Statement st = connection.createStatement();
             String sql = "INSERT INTO Rates (UserID, GameName, Rate)"
                     + "SELECT " + userID + ", '" + gameName + "', '" + gameRate + "'";
@@ -438,7 +437,6 @@ public class Database {
             while (rs.next()) {
                 ratedBy = rs.getInt(1);
             }
-            System.out.println("bbbbbb");
             ratedBy++;
             sql ="UPDATE Games SET RatedBy = '" + ratedBy + "' WHERE GameName = '" + gameName + "'";
             st.execute(sql);
@@ -446,19 +444,17 @@ public class Database {
         }
 
         Statement st = connection.createStatement();
-        String sql = "SELECT Rate FROM Rates";
+        String sql = "SELECT Rate FROM Rates WHERE GameName = '" + gameName + "'";
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-            System.out.println("denemeeee");
             double columnValue = rs.getDouble("Rate");
             total += columnValue;
             counter++;
-            System.out.println("denemexx22");
         }
         System.out.println(total);
         average = total/counter;
-        String formattedValue = String.format("%.1f", average);
-        System.out.println(formattedValue);
+        String formattedValue = String.format("%.2f", average);
+        System.out.println("Formatted val: " + formattedValue);
 
         sql = "UPDATE Games SET GamesAverageRate = '" + formattedValue + "' WHERE GameName = '" + gameName + "'";
         st.execute(sql);

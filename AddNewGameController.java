@@ -112,7 +112,7 @@ public class AddNewGameController {
             Game game = new Game(gameNameComboBox.getValue(), Database.getGameImage(gameNameComboBox.getValue(), Navigator.getUser().getUserID()));
             Database.saveGame(game, Navigator.getUser().getUserID());
             addNewGameErrorLabel.setTextFill(Color.color(0, 1, 0));
-            addNewGameErrorLabel.setText("The game is successfully added to your list");
+            addNewGameErrorLabel.setText("The game is successfully added to your list, please refresh your screen");
             Database.addImage(Navigator.getUser().getUserID(), gameNameComboBox.getValue(), image.getUrl());
         }
         else{

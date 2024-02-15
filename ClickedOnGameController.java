@@ -160,8 +160,10 @@ public class ClickedOnGameController {
         //oyun ismini nasıl alabileceğimizi bulmalıyız
         Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), gameNameLabel.getText(), rateChoiceBox.getValue());
         rateChoiceBox.setValue(Database.getGameRate(Navigator.getUser().getUserID(), gameNameLabel.getText()));
+        averageRateLabel.setText(Database.getGamesAverageRate(gameNameLabel.getText()) + "");
+        ratedByLabel.setText(Database.getRatedBy(gameNameLabel.getText()) + "");
         successfullySavedLabel.setTextFill(Color.color(0, 1, 0));
-        successfullySavedLabel.setText("Successfully Saved"); //bu bütün frame'lerde gözükmüyor ????
+        successfullySavedLabel.setText("Successfully Saved");
     }
 
     @FXML
