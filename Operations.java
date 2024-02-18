@@ -105,7 +105,7 @@ public class Operations{
                 SortingAndSearching.linearSearch(searchBar.getText());
                 theChooserLabel.setText("The Linear Search is used while searching");
             } else if (theNumber == 2) {
-                SortingAndSearching.binarySearch(searchBar.getText());
+                SortingAndSearching.binarySearch(searchBar.getText(), 0, 0);
                 theChooserLabel.setText("The Binary Search is used while searching");
             }
         }
@@ -121,15 +121,15 @@ public class Operations{
         int theNumber = rand.nextInt(3,6);
 
         if (theNumber == 3) {
-            SortingAndSearching.bubbleSort();
+            SortingAndSearching.bubbleSort(Navigator.gamesList);
             theChooserLabel.setText("The Bubble Sort is used while sorting");
         }
         else if (theNumber == 4) {
-            SortingAndSearching.selectionSort();
+            SortingAndSearching.selectionSort(Navigator.gamesList);
             theChooserLabel.setText("The Selection Sort is used while sorting");
         }
         else if(theNumber == 5){
-            SortingAndSearching.insertionSort();
+            SortingAndSearching.insertionSort(Navigator.gamesList);
             theChooserLabel.setText("The Insertion Sort is used while sorting");
         }
 
