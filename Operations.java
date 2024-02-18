@@ -163,63 +163,18 @@ public class Operations{
         }
     }
 
-    /*private void initializeVBoxes() throws IOException {
-        FXMLLoader theLoader = Navigator.clickedOnGameList.get(Navigator.clickedOnGameList.size() - 1);
-        ClickedOnGameController controller = theLoader.getController();
-
-        for(int k = 0; k < Database.getUsersGames(Navigator.getUser().getUserID()).size(); k++) {
-            String gameName = Database.getUsersGames(Navigator.getUser().getUserID()).get(k).getGameName();
-            Database.fillUserIDAndReviewsList(gameName);
-            System.out.println("denememmmmm111");
-            for (int i = 0; i < Navigator.reviewsList.size(); i++) {
-                if (Navigator.reviewsList.get(0) != null) {
-                    System.out.println("denememmmmm222");
-                    FXMLLoader theLoaderTwo = new FXMLLoader(getClass().getResource("FXML/CommentBox.fxml"));
-                    Parent root = theLoaderTwo.load();
-                    CommentBoxController cbController = theLoaderTwo.getController();
-
-                    cbController.setNameLabel(Database.getUserNameById(Navigator.userIDListForReviews.get(i)));
-                    System.out.println(Database.getUserNameById(Navigator.userIDListForReviews.get(i)));
-                    cbController.setRateLabel(Database.getGameRate(Navigator.userIDListForReviews.get(i), gameName));
-                    cbController.setCommentLabel(Navigator.reviewsList.get(i));
-                    controller.addToTheVBox(cbController.getTheAnchorPane());
-                }
-            }
-        }
-    }*/
-
-    /*private void createAndInitializeClickedOnGameControllers(String gameName, String gameType, String gameRate) throws IOException{
-        User theCurrentUser = Navigator.getUser();
-        FXMLLoader theLoader = new FXMLLoader(getClass().getResource("FXML/ClickedOnGame.fxml"));
-        Navigator.clickedOnGameList.add(theLoader);
-
-        Parent root = null;
-        try {
-            root = theLoader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        ClickedOnGameController controller = theLoader.getController();
-        controller.setGameNameLabel(gameName);
-        controller.setTypeLabel(gameType);
-        controller.setRateChoiceBox(gameRate);
-        controller.setGameImageView(Database.getGameImage(gameName, theCurrentUser.getUserID()));
-        controller.setAverageRateLabel(Database.getGamesAverageRate(gameName));
-        controller.setRatedByLabel(Database.getRatedBy(gameName));
-    }*/
     @FXML
     private void updateLabelAndPopUpGameInfo(String gameName, String gameType, String gameRate) throws IOException {
         Navigator.reviewsList.clear();
         Navigator.clickedOnGameList.clear();
 
-        System.out.println("who is");
+
         User theCurrentUser = Navigator.getUser();
         FXMLLoader theLoader = new FXMLLoader(getClass().getResource("FXML/ClickedOnGame.fxml"));
         Navigator.clickedOnGameList.add(theLoader);
 
 
-        System.out.println("the king");
+
         Parent root = null;
         try {
             root = theLoader.load();
@@ -227,19 +182,17 @@ public class Operations{
             throw new RuntimeException(e);
         }
 
-        System.out.println("tell me");
+
         Scene popUpScene = new Scene(root);
         popupStage.setTitle("Game Details");
         popupStage.setScene(popUpScene);
         popupStage.show();
 
-        System.out.println("nasıl");
+
         ClickedOnGameController controller = theLoader.getController();
-        System.out.println("yani");
         controller.setGameNameLabel(gameName);
         controller.setTypeLabel(gameType);
         controller.setRateChoiceBox(gameRate);
-        System.out.println("öncelik kimde");
         controller.setGameImageView(Database.getGameImage(gameName, theCurrentUser.getUserID()));
         controller.setAverageRateLabel(Database.getGamesAverageRate(gameName));
         controller.setRatedByLabel(Database.getRatedBy(gameName));

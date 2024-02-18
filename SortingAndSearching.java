@@ -7,14 +7,14 @@ public class SortingAndSearching {
         for (int i = 0; i < Database.getUsersGames(Navigator.getUser().getUserID()).size(); i++) {
             if (Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameName().toLowerCase().contains(searchedText.toLowerCase())) {
                 Navigator.gamesList.add(Database.getUsersGames(Navigator.getUser().getUserID()).get(i));
-                System.out.println(Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameName());
             }
         }
 
     }
 
+    //binary çalışmıyor
     public static void binarySearch(String searchedText, int first, int last) {
-        /*Navigator.gamesList.clear();
+        Navigator.gamesList.clear();
         ArrayList<Game> userGameList = Database.getUsersGames(Navigator.getUser().getUserID());
         bubbleSort(userGameList);
 
@@ -25,16 +25,14 @@ public class SortingAndSearching {
                 if (userGameList.get(mid).getGameName().compareTo(searchedText) < 0) {
                     first = mid + 1;
                 } else if (userGameList.get(mid).getGameName().equals(searchedText)) {
+                    Navigator.gamesList.add(userGameList.get(mid));
                     break;
                 } else {
                     last = mid - 1;
                 }
                 mid = (first + last) / 2;
             }
-            if(first < last){
-                Navigator.gamesList.add();
-            }
-        }*/
+        }
     }
 
 

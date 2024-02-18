@@ -60,7 +60,6 @@ public class AddNewGameController {
     }
     @FXML
     void addImageButtonAction(ActionEvent event) {
-        //imageView kutucuğuna user'ın seçtiği image eklenecek. Ancak bunu yapabilmek için butonun bizi bilgisayarın dosyalar popup ına yönlendirmesi gerekiyor
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image File");
         fileChooser.getExtensionFilters().addAll(
@@ -70,7 +69,6 @@ public class AddNewGameController {
         if (selectedFile != null) {
             image = new Image(selectedFile.toURI().toString());
             gameImage.setImage(image);
-            //Database.addImage(Navigator.getUser().getUserID(), gameNameComboBox.getValue(), selectedFile.toURI().toString());
         }
         else{
             addNewGameErrorLabel.setTextFill(Color.color(1, 0, 0));
@@ -86,10 +84,7 @@ public class AddNewGameController {
 
     @FXML
     void rateGameSliderAction(MouseEvent event) throws SQLException {
-        System.out.println("Slider value changed: " + (int)rateGameSlider.getValue());
-        // You can save the value to a variable or data structure here
         int sliderValue = (int)rateGameSlider.getValue();
-        // Perform any other actions with the value, such as saving it to a database
         try {
             Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), gameNameComboBox.getValue(), String.valueOf(sliderValue));
         } catch (SQLException e) {

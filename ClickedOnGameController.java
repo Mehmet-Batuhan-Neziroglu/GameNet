@@ -70,52 +70,7 @@ public class ClickedOnGameController {
         }
         rateChoiceBox.setItems(rates);
         gameImageView.setImage(image);
-
-
-        /*FXMLLoader theLoader = Navigator.clickedOnGameList.get(Navigator.clickedOnGameList.size() - 1);
-        ClickedOnGameController controller = theLoader.getController();
-
-        System.out.println(Navigator.clickedOnGameList.size());
-        System.out.println(controller.getGameName());
-        System.out.println(controller.ratedByLabel.getText());
-        System.out.println(controller.averageRateLabel.getText());
-
-        if(!didEntered) {
-            //yukarıdaki kod buradaydı
-
-            //controller.gameNameLabel.getText()
-            Database.fillUserIDAndReviewsList("League of Legends");
-            System.out.println(controller.gameNameLabel.getText());
-            for (int i = 0; i < Navigator.reviewsList.size(); i++) {
-                if (Navigator.reviewsList.get(0) != null) {
-                    System.out.println("denememmmmm222");
-                    FXMLLoader theLoaderTwo = new FXMLLoader(getClass().getResource("FXML/CommentBox.fxml"));
-                    Parent root = theLoaderTwo.load();
-                    CommentBoxController cbController = theLoaderTwo.getController();
-
-                    cbController.setNameLabel(Database.getUserNameById(Navigator.userIDListForReviews.get(i)));
-                    System.out.println(Database.getUserNameById(Navigator.userIDListForReviews.get(i)));
-                    cbController.setRateLabel(Database.getGameRate(Navigator.userIDListForReviews.get(i), controller.gameNameLabel.getText()));
-                    cbController.setCommentLabel(Navigator.reviewsList.get(i));
-                    controller.addToTheVBox(cbController.getTheAnchorPane());
-                }
-            }
-        }*/
     }
-
-    /*@FXML
-    private void setLabelsWhenClickedOnGame(String gameName, String gameType, String gameRate, ClickedOnGameController controller) throws IOException {
-        User theCurrentUser = Navigator.getUser();
-        System.out.println("nasıl");
-        System.out.println("yani");
-        controller.setGameNameLabel(gameName);
-        controller.setTypeLabel(gameType);
-        controller.setRateChoiceBox(gameRate);
-        System.out.println("öncelik kimde");
-        controller.setGameImageView(Database.getGameImage(gameName, theCurrentUser.getUserID()));
-        controller.setAverageRateLabel(Database.getGamesAverageRate(gameName));
-        controller.setRatedByLabel(Database.getRatedBy(gameName));
-    }*/
 
     public void setVBoxes() throws IOException {
         FXMLLoader theLoader = Navigator.clickedOnGameList.get(Navigator.clickedOnGameList.size() - 1);
@@ -123,13 +78,8 @@ public class ClickedOnGameController {
 
         Database.fillUserIDAndReviewsList(controller.gameNameLabel.getText());
 
-        /*for (int i = 0; i < Navigator.reviewsList.size(); i++) {
-            System.out.println(Navigator.reviewsList.get(i));
-        }*/
-
         for (int i = 0; i < Navigator.reviewsList.size(); i++) {
             if (Navigator.reviewsList.get(0) != null) {
-                System.out.println("denememmmmm222");
                 FXMLLoader theLoaderTwo = new FXMLLoader(getClass().getResource("FXML/CommentBox.fxml"));
                 Parent root = theLoaderTwo.load();
                 CommentBoxController cbController = theLoaderTwo.getController();
@@ -157,7 +107,6 @@ public class ClickedOnGameController {
 
     @FXML
     void saveButtonAction(MouseEvent event) throws SQLException {
-        //oyun ismini nasıl alabileceğimizi bulmalıyız
         Database.addOrUpdateGameRate(Navigator.getUser().getUserID(), gameNameLabel.getText(), rateChoiceBox.getValue());
         rateChoiceBox.setValue(Database.getGameRate(Navigator.getUser().getUserID(), gameNameLabel.getText()));
         averageRateLabel.setText(Database.getGamesAverageRate(gameNameLabel.getText()) + "");

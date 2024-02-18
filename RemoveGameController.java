@@ -25,7 +25,6 @@ public class RemoveGameController {
         for (int i = 0; i < Database.getUsersGames(Navigator.getUser().getUserID()).size(); i++) {
             usersGameList.add(Database.getUsersGames(Navigator.getUser().getUserID()).get(i).getGameName());
         }
-        //Collections.addAll(Database.getUsersGames(Navigator.getUser().getUserID()));
         gameNameComboBox.setValue("Choose a game");
         gameNameComboBox.setItems(usersGameList);
 
@@ -40,7 +39,6 @@ public class RemoveGameController {
     void removeButtonAction(MouseEvent event) {
         String gameToRemove = gameNameComboBox.getValue();
         if(!gameToRemove.equals("Choose a game") && Database.checkIsGameInUsersGame(gameToRemove)){
-            //fill this method
             Database.removeUsersGame(gameToRemove, Navigator.getUser().getUserID());
 
             warningLabel.setTextFill(Color.color(0, 1, 0));

@@ -70,7 +70,7 @@ public class Database {
             String sql = "SELECT UserName FROM Users WHERE UserID = '" + userID + "'";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                usrName = rs.getString(1);  //bu index 1 idi
+                usrName = rs.getString(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class Database {
             String sql = "SELECT GameImagePath FROM UsersGames WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                gameImagePath = rs.getString(1);  //bu index 1 idi
+                gameImagePath = rs.getString(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -345,15 +345,13 @@ public class Database {
             Statement st = connection.createStatement();
             String sql = "SELECT UserID, Review FROM Reviews WHERE GameName = '" + gameName + "'";
             ResultSet rs = st.executeQuery(sql);
-            System.out.println("not even here!?");
+
             while (rs.next()) {
-                System.out.println("do yo enter here");
                 userId = rs.getInt("UserID");
                 review = rs.getString("Review");
 
                 Navigator.userIDListForReviews.add(userId);
                 Navigator.reviewsList.add(review);
-                System.out.println("or hereee");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -416,7 +414,6 @@ public class Database {
         double average = 0;
         try {
             Statement st = connection.createStatement();
-            //burası nedense hata vermiyor ve yeni rate kaydetmek istediğimde de buraya giriyor
             String sql = "SELECT Rate FROM Rates WHERE UserID = '" + userID + "' AND GameName = '" + gameName + "'";
             ResultSet rs = st.executeQuery(sql);
             if(rs.next()) {
@@ -451,10 +448,9 @@ public class Database {
             total += columnValue;
             counter++;
         }
-        System.out.println(total);
+
         average = total/counter;
         String formattedValue = String.format("%.2f", average);
-        System.out.println("Formatted val: " + formattedValue);
 
         sql = "UPDATE Games SET GamesAverageRate = '" + formattedValue + "' WHERE GameName = '" + gameName + "'";
         st.execute(sql);
