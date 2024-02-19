@@ -105,7 +105,7 @@ public class Operations{
                 SortingAndSearching.linearSearch(searchBar.getText());
                 theChooserLabel.setText("The Linear Search is used while searching");
             } else if (theNumber == 2) {
-                SortingAndSearching.binarySearch(searchBar.getText(), 0, 0);
+                SortingAndSearching.binarySearch(searchBar.getText());
                 theChooserLabel.setText("The Binary Search is used while searching");
             }
         }

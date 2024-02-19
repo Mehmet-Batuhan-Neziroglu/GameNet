@@ -13,19 +13,24 @@ public class SortingAndSearching {
     }
 
     //binary çalışmıyor
-    public static void binarySearch(String searchedText, int first, int last) {
+    public static void binarySearch(String searchedText) {
         Navigator.gamesList.clear();
         ArrayList<Game> userGameList = Database.getUsersGames(Navigator.getUser().getUserID());
         bubbleSort(userGameList);
 
+        int first = 0;
+        int last = userGameList.size() - 1;
+        boolean didFound = false;
+
         int mid = (first + last) / 2;
 
-        for(int i = 0; i < userGameList.size(); i++) {
+        for(int i = 0; i < userGameList.size() && !didFound; i++) {
             while (first <= last) {
                 if (userGameList.get(mid).getGameName().compareTo(searchedText) < 0) {
                     first = mid + 1;
                 } else if (userGameList.get(mid).getGameName().equals(searchedText)) {
                     Navigator.gamesList.add(userGameList.get(mid));
+                    didFound = true;
                     break;
                 } else {
                     last = mid - 1;

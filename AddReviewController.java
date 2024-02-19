@@ -29,5 +29,7 @@ public class AddReviewController {
         cbController.setRateLabel(controller.getRate());
         cbController.setCommentLabel(reviewTextField.getText());
         controller.addToTheVBox(cbController.getTheAnchorPane());
+
+        
     }
 }
