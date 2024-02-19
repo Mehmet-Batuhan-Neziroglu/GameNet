@@ -30,6 +30,6 @@ public class AddReviewController {
         cbController.setCommentLabel(reviewTextField.getText());
         controller.addToTheVBox(cbController.getTheAnchorPane());
 
-        
+
     }
 }

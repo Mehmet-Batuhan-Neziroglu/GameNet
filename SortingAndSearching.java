@@ -20,24 +20,20 @@ public class SortingAndSearching {
 
         int first = 0;
         int last = userGameList.size() - 1;
-        boolean didFound = false;
 
         int mid = (first + last) / 2;
 
-        for(int i = 0; i < userGameList.size() && !didFound; i++) {
             while (first <= last) {
                 if (userGameList.get(mid).getGameName().compareTo(searchedText) < 0) {
                     first = mid + 1;
                 } else if (userGameList.get(mid).getGameName().equals(searchedText)) {
                     Navigator.gamesList.add(userGameList.get(mid));
-                    didFound = true;
                     break;
                 } else {
                     last = mid - 1;
                 }
                 mid = (first + last) / 2;
             }
-        }
     }
 
 
